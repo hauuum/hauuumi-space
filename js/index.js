@@ -138,20 +138,15 @@ function ready() {
     let rightTrsnfValue;
     let opctTransValue;
 
-    
-
     //intro txt
     if (currentScrY >= eleIntroduce.offsetTop - eleIntroduce.offsetHeight && currentScrY < s2.offsetTop) {
       document.querySelector('.home-introduce .__left').style.marginLeft = currentScrY * value + '%';
       document.querySelector('.home-introduce .__right').style.marginLeft = '-' + currentScrY * value + '%';
-
-      
     }
     
 
     //work txt
     else if (currentScrY >= eleWork.offsetTop - (eleWork.offsetHeight / 5) && currentScrY < s3.offsetTop) {
-
 
       //여긴 수정하기!
       
