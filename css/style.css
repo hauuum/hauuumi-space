@@ -83,7 +83,7 @@ main .page {
 }
 main .home {
   position: relative;
-  background: url(/assets/imgs/bg2.png) center center repeat;
+  background: url(./assets/imgs/bg2.png) center center repeat;
   background-attachment: fixed;
   background-size: contain;
 }
