@@ -1,0 +1,161 @@
+/*==========================================================================
+	Font
+==========================================================================*/
+/* 티몬소리 */
+@font-face {
+	font-family: 'TmonMonsori';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 에스코어 드림 */
+@font-face {
+	font-family: 'SCoreDream';
+	font-weight: 200; 
+	font-style: normal; 
+	src: url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream2.woff) format('woff');
+	font-display: swap;
+}
+@font-face {
+	font-family: 'SCoreDream';
+	font-weight: 400; 
+	font-style: normal; 
+	src: url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream4.woff) format('woff');
+	font-display: swap;
+}
+@font-face {
+	font-family: 'SCoreDream';
+	font-weight: 600; 
+	font-style: normal; 
+	src: url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream6.woff) format('woff');
+	font-display: swap;
+}
+@font-face {
+	font-family: 'SCoreDream';
+	font-weight: 900; 
+	font-style: normal; 
+	src: url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream9.woff) format('woff');
+	font-display: swap;
+}
+
+/*==========================================================================
+	Reset
+==========================================================================*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
+em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas,
+details, embed, figure, figcaption, footer, header, hgroup, menu, nav,
+output, ruby, section, summary, time, mark, audio, video,option {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	line-height: 1.5;
+	font-size: 1rem;
+	font-family: 'SCoreDream';
+	font-weight: 200;
+	-webkit-text-size-adjust: none;
+  word-break: break-all;
+	scroll-behavior: smooth;
+}
+html,body{
+	width: 100%;
+}
+body {
+	position: relative;
+	overflow-x: hidden;
+}
+textarea,
+button,
+input,
+select {
+	border: none;
+	padding: 0;
+	background: none;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+	color: #9e9e9e;
+	font-size: 0.875rem;
+	font-family: 'Gowun Dodum', sans-serif;
+}
+::-moz-placeholder { /* Firefox 19+ */
+	color: #9e9e9e;
+	font-size: 0.875rem;
+	font-family: 'Gowun Dodum', sans-serif;
+}
+:-ms-input-placeholder { /* IE 10+ */
+	color: #9e9e9e;
+	font-size: 0.875rem;
+	font-family: 'Gowun Dodum', sans-serif;
+}
+:-moz-placeholder { /* Firefox 18- */
+	color: #9e9e9e;
+	font-size: 0.875rem;
+	font-family: 'Gowun Dodum', sans-serif;
+}
+img {
+	transform: translateZ(0);
+}
+a {
+	font-size: inherit;
+	display: block;
+	text-decoration: none;
+	vertical-align: baseline;
+	background: transparent;
+	-webkit-tap-highlight-color: inherit;
+	color: inherit;
+}
+a:hover {
+	text-decoration: none;
+	vertical-align: baseline;
+	color: inherit;
+}
+em, i, b, strong, dd, dt {
+	font-style: normal;
+	text-decoration: none;
+}
+li, ol, ul {
+	list-style: none;
+}
+/*==========================================================================
+	공통클래스
+==========================================================================*/
+.ir-pm {
+	display: block;
+	overflow: hidden;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -9999px;
+}
+.ir-wa {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: block;
+	overflow: hidden;
+	z-index: -1;
+}
+.ir-so {
+	position: absolute;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+.row {
+	align-items: center;
+	justify-content: center;
+	margin-left: 0;
+	margin-right: 0;
+}
+.row > * {
+  width: auto;
+  max-width: auto;
+	padding-left: 0;
+	padding-right: 0;
+}
+.txt-br {
+	display: block;
+}

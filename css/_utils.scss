@@ -1,0 +1,63 @@
+/* 변수 */
+$white: #fff;
+$mainBlack: #010506;
+$black42: #424242;
+$black35: #353535;
+$gray9e: #9e9e9e;
+$gray75: #757575;
+$pink: #D04963;
+$yellow: #FDAC4E;
+$font12: .75rem;
+$font14: .875rem;
+$font15: .9375rem;
+$font16: 1rem;
+$font18: 1.125rem;
+$font20: 1.25rem;
+$font24: 1.5rem;
+$font42: 2.625rem;
+$weight200: 200;
+$weight400: 400;
+$weight600: 600;
+$weight900: 900;
+
+/* 반응형 */
+$mobile: 767px;
+$tablet: 1023px;
+$desktop: 1024px;
+
+@mixin tablet{
+  @media (max-width: $tablet){
+    @content;
+  }
+}
+@mixin mobile{
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin animation ($duration, $name) {
+  animation-name: $name;
+  animation-duration: $duration;
+  animation-iteration-count: infinite;
+}
+
+@mixin keyframe ($animation_name)  {
+  @keyframes #{$animation_name} {
+    @content;
+  }
+}
+@include keyframe (twinkle) {
+  0% {
+      opacity: .2;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: .2;
+      transform: scale(1);
+    }
+  }
