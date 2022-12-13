@@ -36,10 +36,11 @@ $desktop: 1024px;
   }
 }
 
-@mixin animation ($duration, $name) {
+@mixin animation ($duration, $name, $timing) {
   animation-name: $name;
   animation-duration: $duration;
   animation-iteration-count: infinite;
+  animation-timing-function: $timing;
 }
 
 @mixin keyframe ($animation_name)  {
@@ -47,17 +48,18 @@ $desktop: 1024px;
     @content;
   }
 }
+
 @include keyframe (twinkle) {
   0% {
-      opacity: .2;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.1);
-    }
-    100% {
-      opacity: .2;
-      transform: scale(1);
-    }
+    opacity: .2;
+    transform: scale(1);
   }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: .2;
+    transform: scale(1);
+  }
+}

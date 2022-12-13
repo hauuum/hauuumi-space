@@ -80,12 +80,18 @@ main {
 main .page {
   position: relative;
   z-index: 1;
+  background: #fff;
 }
 main .home {
   position: relative;
   background: url(../assets/imgs/bg2.png) center center repeat;
   background-attachment: fixed;
   background-size: contain;
+}
+@media (max-width: 767px) {
+  main .home {
+    background-size: cover;
+  }
 }
 main .home > div {
   display: flex;
@@ -97,56 +103,55 @@ main .home > div:not(.home-introduce, .home-strength) {
   height: 100vh;
 }
 main .home-main img {
-  width: 31.818%;
+  width: 24vw;
 }
 @media (max-width: 1023px) {
   main .home-main img {
-    width: 42.818%;
+    width: 36vw;
   }
 }
 @media (max-width: 767px) {
   main .home-main img {
-    width: 54.871%;
+    width: 48vw;
+    margin-left: -12%;
   }
 }
 main .home-main .home-txt {
   position: relative;
-  margin-left: -6.25rem;
+  margin-left: -8.25rem;
   margin-top: 2.5rem;
 }
 @media (max-width: 767px) {
   main .home-main .home-txt {
+    position: absolute;
+    left: 50%;
+    top: 50%;
     margin-left: 0;
-    margin-top: -8rem;
+    margin-top: 0;
   }
 }
 main .home-main .home-txt h2, main .home-main .home-txt em {
   color: #fff;
-  font-size: 6.25rem;
+  font-size: 4vw;
   line-height: 1;
   text-transform: uppercase;
-  text-shadow: -1rem 1rem 0 rgba(0, 0, 0, 0.9);
+  text-shadow: 0px 0px 0 rgba(0, 0, 0, 0.9);
+  transition: 0.4s;
 }
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
   main .home-main .home-txt h2, main .home-main .home-txt em {
-    font-size: 4.5rem;
+    font-size: 5vw;
   }
 }
 @media (max-width: 767px) {
   main .home-main .home-txt h2, main .home-main .home-txt em {
-    font-size: 3rem;
-    text-shadow: -0.5rem 0.5rem 0 rgba(0, 0, 0, 0.9);
+    font-size: 7vw;
+    text-shadow: -0.15em 0.15em 0 rgba(0, 0, 0, 0.9);
   }
 }
 main .home-main .home-txt em {
   display: block;
   font-family: "TmonMonsori";
-  margin-left: -5rem;
-}
-@media (max-width: 767px) {
-  main .home-main .home-txt em {
-    margin-left: -1.5rem;
-  }
 }
 main .home-main .home-txt .home-next-btn {
   text-align: right;
@@ -159,6 +164,7 @@ main .home-main .home-txt .home-next-btn {
 }
 @media (max-width: 767px) {
   main .home-main .home-txt .home-next-btn {
+    margin-top: 0.5rem;
     font-size: 0.75rem;
   }
 }
@@ -352,6 +358,7 @@ main .home-introduce .home-introduce-box::before {
   height: 100%;
   background: #fff;
   z-index: 1;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
 }
 @media (max-width: 1023px) {
   main .home-introduce .home-introduce-box::before {
@@ -456,7 +463,9 @@ main .home-introduce .home-introduce-box .home-desc p {
 }
 @media (max-width: 767px) {
   main .home-introduce .home-introduce-box .home-desc p {
+    width: 90%;
     font-size: 0.875rem;
+    margin: 1.25rem auto 0;
   }
 }
 main .home-strength {
@@ -497,8 +506,6 @@ main .home-strength .home-career {
 }
 main .home-strength .home-strength-box h3,
 main .home-strength .home-career h3 {
-  position: sticky;
-  top: 0;
   flex: none;
   font-size: 3.75rem;
   color: #fff;
@@ -516,8 +523,6 @@ main .home-strength .home-career h3 {
 @media (max-width: 767px) {
   main .home-strength .home-strength-box h3,
   main .home-strength .home-career h3 {
-    position: inherit;
-    top: 0;
     width: 100%;
     text-align: left;
     font-size: 2.5rem;
@@ -762,6 +767,11 @@ main .project .prj-list {
   justify-content: space-between;
   width: 90%;
   margin-top: 8rem;
+  opacity: 0;
+  transition: 1s;
+}
+main .project .prj-list.view {
+  opacity: 1;
 }
 @media (max-width: 1023px) {
   main .project .prj-list {
@@ -848,7 +858,7 @@ main .project .prj-list .prj-desc h3 {
 @media (max-width: 767px) {
   main .project .prj-list .prj-desc h3 {
     font-size: 1.25rem;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.25em;
   }
 }
 main .project .prj-list .prj-desc p {
@@ -946,17 +956,17 @@ main .project .prj-list .prj-desc .go-to-btn::before {
     opacity: 1;
   }
 }
-main .project .prj-list .prj-desc .go-to-btn:hover {
+main .project .prj-list .prj-desc .go-to-btn:hover, main .project .prj-list .prj-desc .go-to-btn:focus {
   color: #fff;
 }
-main .project .prj-list .prj-desc .go-to-btn:hover::before {
+main .project .prj-list .prj-desc .go-to-btn:hover::before, main .project .prj-list .prj-desc .go-to-btn:focus::before {
   width: 100%;
   height: 2.625rem;
   border-radius: 4px;
   background: #FDAC4E;
   opacity: 1;
 }
-main .project .prj-list:hover .prj-img img {
+main .project .prj-list:hover .prj-img img, main .project .prj-list:focus .prj-img img {
   filter: blur(0) brightness(1);
   transform: scale(1.2);
 }
@@ -970,20 +980,38 @@ main .work {
 main .work .work-bg {
   position: relative;
   height: 100vh;
-  opacity: 0.6;
 }
 main .work .work-bg video {
-  position: absolute;
-  left: 50%;
-  top: 50%;
+  position: fixed;
+  left: 0;
+  top: 0;
   height: 100%;
-  transition: 0.2s;
-  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0.4;
+}
+main .work .work-bg blockquote {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 15%;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+main .work .work-bg blockquote p {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #fff;
 }
 @media (max-width: 767px) {
-  main .work .work-bg video {
-    transform: translate(-50%, -50%) scale(0.1);
+  main .work .work-bg blockquote p {
+    font-size: 0.75rem;
   }
+}
+main .work .work-bg blockquote cite {
+  font-size: 0.75rem;
+  color: #fff;
+  opacity: 0.4;
 }
 main .work .work-txt {
   display: flex;
@@ -1031,44 +1059,44 @@ main .work .work-txt span.__right {
     transform: translateX(600px);
   }
 }
-main .work blockquote {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 15%;
-  width: 100%;
-  padding: 0 1rem;
-  box-sizing: border-box;
-  text-align: center;
-}
-main .work blockquote p {
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: #fff;
-}
-@media (max-width: 767px) {
-  main .work blockquote p {
-    font-size: 0.75rem;
-  }
-}
-main .work blockquote cite {
-  font-size: 0.75rem;
-  color: #fff;
-  opacity: 0.4;
-}
 main .contact {
   position: sticky;
   background: #fff;
-  padding: 10rem 0;
+  padding: 5rem 0;
 }
 @media (max-width: 1023px) {
   main .contact {
-    padding: 7.5rem 0;
+    padding: 3rem 0;
   }
 }
 @media (max-width: 767px) {
   main .contact {
-    padding: 5rem 0;
+    padding: 1.25rem 0;
+  }
+}
+main .contact::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -99px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  z-index: 2;
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+@media (max-width: 1023px) {
+  main .contact::after {
+    top: -79px;
+    height: 80px;
+  }
+}
+@media (max-width: 767px) {
+  main .contact::after {
+    top: -59px;
+    height: 60px;
   }
 }
 main .contact h2 {
@@ -1133,7 +1161,7 @@ main .contact p a::before {
   transform: scale(0, 1);
   transition: transform 0.3s ease-in-out;
 }
-main .contact p a:hover::before {
+main .contact p a:hover::before, main .contact p a:focus::before {
   transform: scale(1, 1);
   transform-origin: 0 50%;
 }
@@ -1210,6 +1238,7 @@ main .contact .imgs-box img:nth-of-type(5) {
 }
 
 footer {
+  position: relative;
   background: #0d1213;
   padding: 0.75rem 0;
 }
@@ -1240,58 +1269,195 @@ footer p {
   background-color: #fff;
   border-radius: 50%;
   box-shadow: 0 0 1px 2px rgba(43, 29, 214, 0.6), 0 0 1px 6px rgba(43, 29, 214, 0.1);
-  animation-name: twinkle;
-  animation-duration: 1s;
+  animation-name: 1s;
+  animation-duration: twinkle;
   animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
 
 .deco {
   position: absolute;
+  transform-origin: center center;
 }
 
 .meteor1 {
   left: 50%;
-  top: -2rem;
-  transform: translateX(-50%) rotate(90deg);
-  width: 4.2708333%;
+  top: 0.4%;
+  width: 3.8vw;
+  transform: rotate(0deg);
+  animation-name: meteor1;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes meteor1 {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 @media (max-width: 1023px) {
   .meteor1 {
-    top: -1rem;
-    width: 8.42456%;
+    top: 1%;
+    width: 6.2vw;
   }
 }
 @media (max-width: 767px) {
   .meteor1 {
-    top: -1rem;
-    width: 8.42456%;
+    top: 0.4%;
+    width: 8.4vw;
+  }
+}
+
+.meteor2 {
+  top: 34%;
+  left: 12%;
+  width: 4.8vw;
+  transform: rotate(92deg);
+  animation-name: meteor2;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes meteor2 {
+  100% {
+    transform: rotate(452deg);
+  }
+}
+@media (max-width: 1023px) {
+  .meteor2 {
+    top: 36%;
+    width: 8.2vw;
+  }
+}
+@media (max-width: 767px) {
+  .meteor2 {
+    top: 28%;
+    width: 10.2vw;
+  }
+}
+
+.meteor3 {
+  top: 78%;
+  right: 26%;
+  width: 3.4vw;
+  transform: rotate(22deg);
+  animation-name: meteor3;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes meteor3 {
+  100% {
+    transform: rotate(382deg);
+  }
+}
+@media (max-width: 1023px) {
+  .meteor3 {
+    width: 5.1vw;
+  }
+}
+@media (max-width: 767px) {
+  .meteor3 {
+    width: 7.8vw;
   }
 }
 
 .planet2 {
   top: -8%;
   right: 7%;
-  width: 15.10416%;
+  width: 18vw;
+  animation-name: planet2;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
-
-.planet3 {
-  left: 12%;
-  top: 70%;
-  width: 7.5625%;
+@keyframes planet2 {
+  0% {
+    transform: rotate(0deg) translateY(16px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateY(16px) rotate(-360deg);
+  }
+}
+@media (max-width: 1023px) {
+  .planet2 {
+    width: 28vw;
+  }
 }
 @media (max-width: 767px) {
-  .planet3 {
-    display: none;
+  .planet2 {
+    top: -6%;
+    width: 32vw;
+    animation-name: planet2;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  @keyframes planet2 {
+    0% {
+      transform: rotate(0deg) translateY(10px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateY(10px) rotate(-360deg);
+    }
   }
 }
 
-.planet4 {
-  left: 16%;
-  top: 68%;
-  width: 1.475%;
+.earth-moon {
+  left: 9%;
+  top: 72%;
+  width: 12vw;
+}
+@media (max-width: 1023px) {
+  .earth-moon {
+    width: 18vw;
+  }
+}
+.earth-moon .planet3 {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 89%;
+  margin-top: -60px;
+  margin-left: -60px;
+  animation-name: planet3;
+  animation-duration: 30s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes planet3 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.earth-moon .planet4 {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 26%;
+  animation-name: planet4;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes planet4 {
+  0% {
+    transform: rotate(0deg) translateX(100px) scale(0.4);
+  }
+  50% {
+    transform: rotate(180deg) translateX(100px) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) translateX(100px) scale(0.4);
+  }
 }
 @media (max-width: 767px) {
-  .planet4 {
+  .earth-moon {
     display: none;
   }
 }
@@ -1299,50 +1465,89 @@ footer p {
 .planet5 {
   right: 4%;
   top: 87%;
-  width: 16.8541666%;
+  width: 18vw;
+  animation-name: planet5;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@media (max-width: 1023px) {
+  .planet5 {
+    top: 94%;
+    width: 26vw;
+  }
 }
 @media (max-width: 767px) {
   .planet5 {
-    top: 94%;
-    width: 34%;
+    top: 92%;
+    width: 42vw;
   }
 }
-
-.meteor2 {
-  top: 34%;
-  left: 10%;
-  width: 4.791666%;
-}
-
-.meteor3 {
-  top: 78%;
-  right: 26%;
-  width: 3.125%;
-  transform: rotate(22deg);
-}
-
-.meteor4 {
-  top: 52%;
-  right: 19%;
-  width: 3.125%;
-  transform: rotate(260deg);
+@keyframes planet5 {
+  0%, 100% {
+    transform: translateY(0.5rem);
+  }
+  50% {
+    transform: translateY(-0.5rem);
+  }
 }
 
 .spaceStation1 {
   top: -7%;
   left: 12%;
-  width: 6.25%;
+  width: 10.2vw;
+  animation-name: spaceStation1;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes spaceStation1 {
+  0% {
+    transform: rotate(0deg) translateX(3px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(3px) rotate(-360deg);
+  }
+}
+@media (max-width: 1023px) {
+  .spaceStation1 {
+    width: 11.4vw;
+  }
+}
+@media (max-width: 767px) {
+  .spaceStation1 {
+    display: none;
+  }
 }
 
 .astronaut1 {
-  top: 11%;
+  top: 8%;
   right: 5%;
-  width: 12.979166%;
+  width: 17vw;
   transform: rotate(-8deg);
+  animation-name: astronaut1;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes astronaut1 {
+  0%, 100% {
+    transform: translateY(1rem);
+  }
+  50% {
+    transform: translateY(-1rem);
+  }
+}
+@media (max-width: 1023px) {
+  .astronaut1 {
+    top: 4%;
+    width: 20.4vw;
+  }
 }
 @media (max-width: 767px) {
   .astronaut1 {
-    display: none;
+    top: 1%;
+    width: 32vw;
   }
 }
 

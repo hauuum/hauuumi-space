@@ -1,4 +1,6 @@
 function ready() {
+  let wWidth = document.documentElement.clientWidth;
+  let currentScrY = document.documentElement.scrollTop;
   const s1 = document.querySelector('#s1');
   const s2 = document.querySelector('#s2');
   const s3 = document.querySelector('#s3');
@@ -6,65 +8,147 @@ function ready() {
   const eleIntroduce = document.querySelector('.home-introduce');
   const eleHeader = document.querySelector('header');
   const eleNav = document.querySelector('nav');
-  const eleNavMemu = document.querySelectorAll('nav > a');
+  const navMemu = document.querySelectorAll('nav > a');
   const eleH1 = document.querySelector('h1');
-  let value = 0.04;
+  const value = 0.04;
 
 
-  //네브 클릭시 액티브 이벤트
-  eleNavMemu.forEach((ele) => {
-    ele.addEventListener('click', function () {
-      eleNavMemu.forEach((ele) => {
-        ele.classList.remove("active");
-      });
+
+
+
+  //Click
+  //Nav Click Event
+  navMemu.forEach((ele) => {
+    ele.classList.remove("active");
+    ele.addEventListener('click', () => {
       ele.classList.add("active");
     });
   });
   
 
-  //네브 스크롤 & 클릭 이벤트
-  const scrollNav = () => {
-    let currentScrY = window.scrollY;
+  //Scroll
+  //Nav Scroll Event
+  const changeBlackNav = () => {
     eleHeader.style.backgroundColor = '#0d1213';
     eleNav.style.color = '#fff';
     eleH1.style.color = '#fff';
-    eleNavMemu.forEach((ele) => {
+    navMemu.forEach((ele) => {
       ele.classList.remove("active");
     });
-    eleNavMemu[0].classList.add("active");
-    
-    if (currentScrY >= s2.offsetTop - 20 && currentScrY < eleWork.offsetTop - 20) {
-      eleHeader.style.backgroundColor = '#fafafa';
-      eleNav.style.color = '#010506';
-      eleH1.style.color = '#010506';
+  }
 
-      eleNavMemu.forEach((ele) => {
-        ele.classList.remove("active");
-      });
-      eleNavMemu[1].classList.add("active");
+  const changeWhiteNav = () => {
+    eleHeader.style.backgroundColor = '#fafafa';
+    eleNav.style.color = '#010506';
+    eleH1.style.color = '#010506';
+
+    navMemu.forEach((ele) => {
+      ele.classList.remove("active");
+    });
+  }
+
+  const scrollNav = () => {
+    currentScrY = document.documentElement.scrollTop;
+    changeBlackNav();
+    navMemu[0].classList.add("active");
+    
+    if (currentScrY >= s2.offsetTop - 20 ) {
+      changeWhiteNav();
+      navMemu[1].classList.add("active");
     }
-    else if (currentScrY >= eleWork.offsetTop - 20 && currentScrY < s3.offsetTop - 20) {
-      eleHeader.style.backgroundColor = '#0d1213';
-      eleNavMemu.forEach((ele) => {
+    if (currentScrY >= eleWork.offsetTop - 20) {
+      changeBlackNav();
+      navMemu.forEach((ele) => {
         ele.classList.remove("active");
       });
     }
-    else if (currentScrY >= s3.offsetTop - 20) {
-      eleHeader.style.backgroundColor = '#fafafa';
-      eleNav.style.color = '#010506';
-      eleH1.style.color = '#010506';
-      eleNavMemu.forEach((ele) => {
-        ele.classList.remove("active");
-      });
-      eleNavMemu[2].classList.add("active");
+    if (currentScrY >= s3.offsetTop - 60) {
+      changeWhiteNav();
+      navMemu[2].classList.add("active");
     }
   }
 
 
-  //반짝이는 별 효과
+
+  //Scroll Event
+  const scrollParallax = () => { 
+    scrollNav();
+
+    currentScrY = document.documentElement.scrollTop;
+    let scaleValue;
+    let leftTrsnfValue;
+    let rightTrsnfValue;
+
+
+    if (currentScrY == 0 && currentScrY <= document.querySelector('.home-main').offsetHeight ) { 
+      setTimeout(mainTxtShadow, 1000);
+    }
+
+
+    //intro txt
+    if (currentScrY >= eleIntroduce.offsetTop - eleIntroduce.offsetHeight && currentScrY < s2.offsetHeight) {
+      document.querySelector('.home-introduce .__left').style.marginLeft = currentScrY * value + '%';
+      document.querySelector('.home-introduce .__right').style.marginLeft = '-' + currentScrY * value + '%';
+    }
+
+
+    //work txt
+    if (currentScrY >= eleWork.offsetTop - (eleWork.offsetHeight / 2) && currentScrY < s3.offsetTop - (eleWork.offsetHeight / 2)) {
+      scaleValue = Number(currentScrY * 0.00012);
+      document.querySelectorAll('.work-txt > span').forEach(ele => {
+        ele.style.opacity = '0';
+      });
+    }
+    if (currentScrY >= eleWork.offsetTop && currentScrY < s3.offsetTop - (eleWork.offsetHeight / 3)) { 
+      const workScr = currentScrY - s1.clientHeight - s2.clientHeight;
+
+      document.querySelectorAll('.work-txt > span').forEach(ele => {
+        ele.style.opacity = '1';
+      });
+
+      if (wWidth > 960) {
+        leftTrsnfValue = Number(-eleWork.clientHeight / 4 + workScr / 3);
+        rightTrsnfValue = Number(eleWork.clientHeight / 4 - workScr / 3);
+      }
+      else { 
+        leftTrsnfValue = Number(-eleWork.clientHeight / 4 + workScr / 2.5);
+        rightTrsnfValue = Number(eleWork.clientHeight / 4 - workScr / 2.5);
+      }
+
+      document.querySelector('.work-txt .__left').style.transform = 'translateX(' + leftTrsnfValue + 'px)';
+      document.querySelector('.work-txt .__right').style.transform = 'translateX(' + rightTrsnfValue + 'px)';
+    }
+
+
+    //Project List
+    const parallaxPrjList = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting === true) {
+          entry.target.classList.add("view");
+        }
+        else {
+          entry.target.classList.remove("view");
+        }
+      });
+    });
+    const prjList = document.querySelectorAll(".prj-list");
+
+    prjList.forEach((ele, inx) => {
+      parallaxPrjList.observe(ele, inx);
+    });
+
+  }
+
+
+ 
+
+
+
+  //Animation
+  //twinkle Animation
   const starWrap = document.querySelector('#star-wrap');
   const star = () => { 
-    let num = document.documentElement.clientWidth / 5;
+    let num = document.documentElement.clientWidth / 4;
     starWrap.innerHTML = "";
 
     for (var i = 0; i < num; i++) { 
@@ -73,8 +157,8 @@ function ready() {
       const randomL = Math.floor(Math.random() * w) ;
       const randomT = Math.floor(Math.random() * h) ;
       const randomW = Math.floor(Math.random() * 6) + 3;
-      const opty = Math.round(Math.random() * 10) / 10 ;
-      const anim = Math.floor(Math.random() * 5) + 1;
+      const opty = Math.random() * 10 / 10 ;
+      const anim = Math.random() * 5 + 0.8;
       const span = document.createElement("span");
 
       span.classList.add("star");
@@ -88,11 +172,23 @@ function ready() {
       span.style.animationTimingFunction  = "ease-in-out";
       span.style.animationFillMode = "infinite";
       starWrap.appendChild(span);
-
     }
   }
+
+  //Main Text Animation
+  const mainTxtShadow = () => { 
+    const mainTxtH2 = s1.querySelector('.home-txt h2');
+    const mainTxtEm = s1.querySelector('.home-txt em');
+
+    mainTxtH2.style.textShadow = '-0.25em 0.25em 0 rgb(0 0 0 / 90%)';
+    mainTxtEm.style.marginLeft = '-5rem';
+    mainTxtEm.style.textShadow = '-0.25em 0.25em 0 rgb(0 0 0 / 90%)';
+  }
+
+
+
   
-  //intro txt 타이핑 효과
+  //Typing Text Animation
   const typingTarget = document.querySelector('#typing-txt');
   let txtgArr = [
     "변화를 즐기는",
@@ -129,58 +225,20 @@ function ready() {
     }
   }
 
+  
+  
 
-  //work txt 스크롤 이벤트
-  const scrollParallax = () => { 
-    let currentScrY = window.pageYOffset;
-    let scaleValue;
-    let leftTrsnfValue;
-    let rightTrsnfValue;
-    let opctTransValue;
+  //마지막 이미지 애니메이션
 
-    //intro txt
-    if (currentScrY >= eleIntroduce.offsetTop - eleIntroduce.offsetHeight && currentScrY < s2.offsetTop) {
-      document.querySelector('.home-introduce .__left').style.marginLeft = currentScrY * value + '%';
-      document.querySelector('.home-introduce .__right').style.marginLeft = '-' + currentScrY * value + '%';
-    }
-    
 
-    //work txt
-    else if (currentScrY >= eleWork.offsetTop - (eleWork.offsetHeight / 5) && currentScrY < s3.offsetTop) {
 
-      //여긴 수정하기!
-      
-      scaleValue = Number(currentScrY * value / 300);
-      document.querySelector('.work-bg > video').style.transform = 'translate(-50%, -50%) scale(' + scaleValue + ')';
-      
-      document.querySelector('.work-txt .__left').style.transform = 'translateX(-800px)';
-      document.querySelector('.work-txt .__right').style.transform = 'translateX(800px)'; 
-      
-    
-      if (currentScrY >= eleWork.offsetTop && currentScrY < s3.offsetTop - (eleWork.offsetHeight / 5)) {
-        opctTransValue = Number(currentScrY * 0.00009);
-        leftTrsnfValue = Number(-800 + Math.round(currentScrY / 11));
-        rightTrsnfValue = Number(800 - Math.round(currentScrY / 11));
 
-        document.querySelector('.work-txt .__left').style.transform = 'translateX(' + leftTrsnfValue + 'px)';
-        document.querySelector('.work-txt .__right').style.transform = 'translateX(' + rightTrsnfValue + 'px)';
-        document.querySelectorAll('.work-txt span').forEach(ele => {
-          ele.style.opacity = opctTransValue;
-        })
-      }
-      
-      
-    }
-    else { 
-      
-    }
-
-  }
 
 
 
   //초기값
-  scrollNav();
+  history.scrollRestoration = "manual";
+  setTimeout(mainTxtShadow, 1000);
   scrollParallax();
   star();
   dynamic(randomString());
@@ -190,26 +248,23 @@ function ready() {
   
   
   
-  window.addEventListener('scroll', () => {
-    scrollNav();
+  document.addEventListener('scroll', () => {
+
     scrollParallax();
   });
-  window.addEventListener('touchMove', () => {
-    scrollNav();
+  document.addEventListener('touchMove', () => {
+
     scrollParallax();
   });
-  window.addEventListener('touchStart', () => {
-    scrollNav();
+  document.addEventListener('touchStart', () => {
     scrollParallax();
   });
-  window.addEventListener('touchEnd', () => {
-    scrollNav();
+  document.addEventListener('touchEnd', () => {
     scrollParallax();
   });
-  window.addEventListener('resize', () => { 
-    scrollNav();
-    scrollParallax();
+  document.addEventListener('resize', () => { 
     star();
+    scrollParallax();
   })
   
 
@@ -226,7 +281,7 @@ function ready() {
   
 
 
-  //움직이는 행성
+  
   
   
   

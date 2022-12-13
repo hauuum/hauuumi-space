@@ -55,6 +55,7 @@ main {
   .page {
     position: relative;
     z-index: 1;
+    background: $white;
   }
   /* HOME */
   .home {
@@ -62,6 +63,9 @@ main {
     background: url(../assets/imgs/bg2.png) center center repeat;
     background-attachment: fixed;
     background-size: contain;
+    @include mobile{
+      background-size: cover;
+    }
     > div {
       display: flex;
       align-items: center;
@@ -73,43 +77,44 @@ main {
     }
     &-main {
       img{
-        width: 31.818%;
+        width: 24vw;
         @include tablet{
-          width: 42.818%;
+          width: 36vw;
         }
         @include mobile{
-          width: 54.871%;
+          width: 48vw;
+          margin-left: -12%;
         }
       }
       .home-txt {
         position: relative;
-        margin-left: -6.25rem;
+        margin-left: -8.25rem;
         margin-top: 2.5rem;
         @include mobile{
+          position: absolute;
+          left: 50%;
+          top: 50%;
           margin-left: 0;
-          margin-top: -8rem;
+          margin-top: 0;
         }
         h2, em {
           color: $white;
-          font-size: 6.25rem;
+          font-size: 4vw;
           line-height: 1;
           text-transform: uppercase;
-          text-shadow: -1rem 1rem 0 rgba(0,0,0,.9);
-          @include tablet{
-            font-size: 4.5rem;
+          text-shadow: 0px 0px 0 rgba(0,0,0,.9);
+          transition: .4s;
+          @include mobile{
+            font-size: 5vw;
           }
           @include mobile{
-            font-size: 3rem;
-            text-shadow: -.5rem .5rem 0 rgba(0,0,0,.9);
+            font-size: 7vw;
+            text-shadow: -0.15em 0.15em 0 rgba(0,0,0,.9);
           }
         }
         em {
           display: block;
           font-family: 'TmonMonsori';
-          margin-left: -5rem;
-          @include mobile{
-            margin-left: -1.5rem;
-          }
         }
         .home-next-btn {
           text-align: right;
@@ -118,6 +123,7 @@ main {
             font-size: $font14;
           }
           @include mobile{
+            margin-top: .5rem;
             font-size: $font12;
           }
           a { 
@@ -282,6 +288,7 @@ main {
           height: 100%;
           background: #fff;
           z-index: 1;
+          box-shadow: 0 0 12px rgba(0,0,0,0.8);
           @include tablet{
             width: 100%;
             left: 50%;
@@ -362,7 +369,9 @@ main {
               font-size: $font14;
             }
             @include mobile{
+              width: 90%;
               font-size: $font14;
+              margin: 1.25rem auto 0;
             }
           }
         }
@@ -393,8 +402,6 @@ main {
           width: 100%;
         }
           h3 {
-          position: sticky;
-          top: 0;
           flex: none;
           font-size: 3.75rem;
           color: $white;
@@ -406,8 +413,6 @@ main {
             font-size: 3rem;
           }
           @include mobile{
-            position: inherit;
-            top: 0;
             width: 100%;
             text-align: left;
             font-size: 2.5rem;
@@ -616,6 +621,11 @@ main {
       justify-content: space-between;
       width: 90%;
       margin-top: 8rem;
+      opacity: 0;
+      transition: 1s;
+      &.view {
+        opacity: 1;
+      }
       @include tablet{
         width: 100%;
         margin-top: 5rem;
@@ -687,7 +697,7 @@ main {
           }
           @include mobile{
             font-size: $font20;
-            margin-bottom: .5em;
+            margin-bottom: .25em;
           }
         }
         p {
@@ -766,7 +776,8 @@ main {
               opacity: 1;
             }
           }
-          &:hover{
+          &:hover,
+          &:focus{
             color: $white;
             &::before {
               width: 100%;
@@ -780,7 +791,8 @@ main {
           }
         }
       }
-      &:hover {
+      &:hover,
+      &:focus {
         .prj-img {
           img{
             filter: blur(0) brightness(1);
@@ -799,16 +811,34 @@ main {
     .work-bg {
       position: relative;
       height: 100vh;
-      opacity: .6;
       video {
-        position: absolute;
-        left: 50%;
-        top: 50%;
+        position: fixed;
+        left: 0;
+        top: 0;
         height: 100%;
-        transition: .2s;
-        transform: translate(-50%, -50%) scale(.3);
-        @include mobile{
-          transform: translate(-50%, -50%) scale(.1);
+        opacity: .4;
+      }
+      blockquote {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 15%;
+        width: 100%;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        text-align: center;
+        p {
+          font-size: $font14;
+          font-weight: 400;
+          color: $white;
+          @include mobile{
+            font-size: $font12;
+          }
+        }
+        cite {
+          font-size: $font12;
+          color: $white;
+          opacity: .4;
         }
       }
     }
@@ -856,40 +886,38 @@ main {
         }
       }
     }
-    blockquote {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 15%;
-      width: 100%;
-      padding: 0 1rem;
-      box-sizing: border-box;
-      text-align: center;
-      p {
-        font-size: $font14;
-        font-weight: 400;
-        color: $white;
-        @include mobile{
-          font-size: $font12;
-        }
-      }
-      cite {
-        font-size: $font12;
-        color: $white;
-        opacity: .4;
-      }
-    }
   }
   .contact {
     position: sticky;
     background: #fff;
-    padding: 10rem 0;
+    padding: 5rem 0;
     @include tablet{
-      padding: 7.5rem 0;
+      padding: 3rem 0;
     }
     @include mobile{
-      padding: 5rem 0;
+      padding: 1.25rem 0;
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: -99px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background-color: white;
+      z-index: 2;
+      -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      @include tablet{
+        top: -79px;
+        height: 80px;
       }
+      @include mobile{
+        top: -59px;
+        height: 60px;
+      }
+    }
     h2 {
       width: 100%;
       font-size: 6.25rem;
@@ -942,7 +970,8 @@ main {
           transform: scale(0, 1);
           transition: transform .3s ease-in-out;
         }
-        &:hover {
+        &:hover,
+        &:focus {
           &::before {
             transform: scale(1, 1);
             transform-origin: 0 50%;
@@ -1010,6 +1039,7 @@ main {
   }
 }
 footer{
+  position: relative;
   background: #0d1213;
   padding: .75rem 0;
   @include mobile {
@@ -1037,43 +1067,145 @@ footer{
     background-color: #fff;
     border-radius: 50%;
     box-shadow: 0 0 1px 2px rgba(43,29,214,.6), 0 0 1px 6px rgba(43,29,214,.1);
-    @include animation(1s, twinkle);
+    @include animation(twinkle,1s,ease-in-out);
   }
 }
 .deco {
   position: absolute;
+  transform-origin: center center;
 }
 .meteor1{
   left: 50%;
-  top: -2rem;
-  transform: translateX(-50%) rotate(90deg);
-  width: 4.2708333%;
+  top: 0.4%;
+  width: 3.8vw;
+  transform: rotate(0deg);
+  @include animation(12s, meteor1, linear);
+  @include keyframe(meteor1) {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
   @include tablet{
-    top: -1rem;
-    width: 8.42456%;
+    top: 1%;
+    width: 6.2vw;
   }
   @include mobile{
-    top: -1rem;
-    width: 8.42456%;
+    top: 0.4%;
+    width: 8.4vw;
   }
 }
+.meteor2 {
+  top: 34%;
+  left: 12%;
+  width: 4.8vw;
+  transform: rotate(92deg);
+  @include animation(12s, meteor2, linear);
+  @include keyframe(meteor2) {
+    100% {
+      transform: rotate(452deg);
+    }
+  }
+  @include tablet{
+    top: 36%;
+    width: 8.2vw;
+  }
+  @include mobile{
+    top: 28%;
+    width: 10.2vw;
+  }
+}
+.meteor3 {
+  top: 78%;
+  right: 26%;
+  width: 3.4vw;
+  transform: rotate(22deg);
+  @include animation(8s, meteor3, ease-in-out);
+  @include keyframe(meteor3) {
+    100% {
+      transform: rotate(382deg);
+    }
+  }
+  @include tablet{
+    width: 5.1vw;
+  }
+  @include mobile{
+    width: 7.8vw;
+  }
+} 
 .planet2 {
   top: -8%;
   right: 7%;
-  width: 15.10416%;
-}
-.planet3 {
-  left: 12%;
-  top: 70%;
-  width: 7.5625%;
+  width: 18vw;
+  @include animation(2s, planet2, linear);
+  @include keyframe(planet2) {
+    0% {
+      transform: rotate(0deg) translateY(16px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateY(16px) rotate(-360deg);
+    }
+  }
+  @include tablet{
+    width: 28vw;
+  }
   @include mobile{
-    display: none;
+    top: -6%;
+    width: 32vw;
+    @include animation(2s, planet2, linear);
+    @include keyframe(planet2) {
+      0% {
+        transform: rotate(0deg) translateY(10px) rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg) translateY(10px) rotate(-360deg);
+      }
+    }
   }
 }
-.planet4 {
-  left: 16%;
-  top: 68%;
-  width: 1.475%;
+.earth-moon {
+  left: 9%;
+  top: 72%;
+  width: 12vw;
+  @include tablet{
+    width: 18vw;
+  }
+  .planet3 {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 89%;
+    margin-top: -60px;
+    margin-left: -60px;
+    @include animation(30s, planet3, linear);
+    @include keyframe(planet3) {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  .planet4 {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 26%;
+    @include animation(3s, planet4, linear);
+    @include keyframe(planet4) {
+      0% {
+        transform: rotate(0deg) translateX(100px) scale(.4);
+      }
+      50% {
+        transform: rotate(180deg) translateX(100px) scale(1);
+      }
+      100% {
+        transform: rotate(360deg) translateX(100px) scale(.4);
+      }
+    }
+  }
   @include mobile{
     display: none;
   }
@@ -1081,41 +1213,67 @@ footer{
 .planet5 {
   right: 4%;
   top: 87%;
-  width: 16.8541666%;
-  @include mobile{
+  width: 18vw;
+  @include tablet{
     top: 94%;
-    width: 34%;
+    width: 26vw;
+  }
+  @include mobile{
+    top: 92%;
+    width: 42vw;
+  }
+  @include animation(2s, planet5, ease-in-out);
+  @include keyframe(planet5) {
+    0%, 100% {
+      transform: translateY(0.5rem);
+    }
+    50% {
+      transform:  translateY(-0.5rem);
+    }
   }
 }
-.meteor2 {
-  top: 34%;
-  left: 10%;
-  width: 4.791666%;
-}
-.meteor3 {
-  top: 78%;
-  right: 26%;
-  width: 3.125%;
-  transform: rotate(22deg);
-} 
-.meteor4 {
-  top: 52%;
-  right: 19%;
-  width: 3.125%;
-  transform: rotate(260deg);
-} 
+
 .spaceStation1 {
   top: -7%;
   left: 12%;
-  width: 6.25%;
-}
-.astronaut1 {
-  top: 11%;
-  right: 5%;
-  width: 12.979166%;
-  transform: rotate(-8deg);
+  width: 10.2vw;
+  @include animation(1s, spaceStation1, linear);
+  @include keyframe(spaceStation1) {
+    0% {
+      transform: rotate(0deg) translateX(3px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(3px) rotate(-360deg);
+    }
+  }
+  @include tablet{
+    width: 11.4vw;
+  }
   @include mobile{
     display: none;
+  }
+}
+.astronaut1 {
+  top: 8%;
+  right: 5%;
+  width: 17vw;
+  transform: rotate(-8deg);
+  @include animation(2s, astronaut1, ease-in-out);
+  @include keyframe(astronaut1) {
+    0%, 100% {
+      transform: translateY(1rem);
+    }
+    50% {
+      transform:  translateY(-1rem);
+    }
+  }
+  @include tablet{
+    top: 4%;
+    width: 20.4vw;
+  }
+  @include mobile{
+    top: 1%;
+    width: 32vw;
   }
 }
 
