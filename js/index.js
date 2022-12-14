@@ -2,17 +2,19 @@ function ready() {
   let wWidth = document.documentElement.clientWidth;
   let currentScrY = document.documentElement.scrollTop;
   const s1 = document.querySelector('#s1');
+  const intro = s1.querySelector('.home-introduce')
+  const introLeftTxt = s1.querySelector('.__left');
+  const introRightTxt = s1.querySelector('.__right');
+  const strength = s1.querySelector('.home-strength');
   const s2 = document.querySelector('#s2');
   const s3 = document.querySelector('#s3');
   const eleWork = document.querySelector('.work');
-  const eleIntroduce = document.querySelector('.home-introduce');
   const eleHeader = document.querySelector('header');
   const eleNav = document.querySelector('nav');
   const navMemu = document.querySelectorAll('nav > a');
   const eleH1 = document.querySelector('h1');
   const value = 0.04;
-
-
+  let onScroll = true;
 
 
 
@@ -52,7 +54,7 @@ function ready() {
     changeBlackNav();
     navMemu[0].classList.add("active");
     
-    if (currentScrY >= s2.offsetTop - 20 ) {
+    if (currentScrY >= s2.offsetTop - 20) {
       changeWhiteNav();
       navMemu[1].classList.add("active");
     }
@@ -71,59 +73,76 @@ function ready() {
 
 
   //Scroll Event
-  const scrollParallax = () => { 
+  const scrollParallax = () => {
     scrollNav();
-
     currentScrY = document.documentElement.scrollTop;
-    let scaleValue;
-    let leftTrsnfValue;
-    let rightTrsnfValue;
+
+    const introScrollY = Math.round(intro.getBoundingClientRect().y / 10);
+    console.log(intro.getBoundingClientRect().y);
 
 
-    if (currentScrY == 0 && currentScrY <= document.querySelector('.home-main').offsetHeight ) { 
+    // let scaleValue;
+    // let leftTrsnfValue;
+    // let rightTrsnfValue;
+
+
+    if (currentScrY == 0 && currentScrY <= document.querySelector('.home-main').offsetHeight) {
       setTimeout(mainTxtShadow, 1000);
     }
 
 
-    //intro txt
-    if (currentScrY >= eleIntroduce.offsetTop - eleIntroduce.offsetHeight && currentScrY < s2.offsetHeight) {
-      document.querySelector('.home-introduce .__left').style.marginLeft = currentScrY * value + '%';
-      document.querySelector('.home-introduce .__right').style.marginLeft = '-' + currentScrY * value + '%';
+    if (introScrollY <= intro.offsetHeight && currentScrY < strength.offsetTop) {
+      console.log('currentScrY:', currentScrY , 'strength.offsetTop:', strength.offsetTop)
+
+      introLeftTxt.style.left =  '-' + introScrollY + '%';
+
     }
+
+
+
+    //intro txt
+    // if (currentScrY >= eleIntroduce.offsetTop - eleIntroduce.offsetHeight && currentScrY < s2.offsetHeight) {
+    //   document.querySelector('.home-introduce .__left').style.marginLeft = currentScrY * value + '%';
+    //   document.querySelector('.home-introduce .__right').style.marginLeft = '-' + currentScrY * value + '%';
+    // }
 
 
     //work txt
-    if (currentScrY >= eleWork.offsetTop - (eleWork.offsetHeight / 2) && currentScrY < s3.offsetTop - (eleWork.offsetHeight / 2)) {
-      scaleValue = Number(currentScrY * 0.00012);
-      document.querySelectorAll('.work-txt > span').forEach(ele => {
-        ele.style.opacity = '0';
-      });
-    }
-    if (currentScrY >= eleWork.offsetTop && currentScrY < s3.offsetTop - (eleWork.offsetHeight / 3)) { 
-      const workScr = currentScrY - s1.clientHeight - s2.clientHeight;
+    // if (currentScrY >= eleWork.offsetTop - (eleWork.offsetHeight / 2) && currentScrY < s3.offsetTop - (eleWork.offsetHeight / 2)) {
+    //   scaleValue = Number(currentScrY * 0.00012);
+    //   document.querySelectorAll('.work-txt > span').forEach(ele => {
+    //     ele.style.opacity = '0';
+    //   });
+    // }
+    // if (currentScrY >= eleWork.offsetTop && currentScrY < s3.offsetTop - (eleWork.offsetHeight / 3)) { 
+    //   const workScr = currentScrY - s1.clientHeight - s2.clientHeight;
 
-      document.querySelectorAll('.work-txt > span').forEach(ele => {
-        ele.style.opacity = '1';
-      });
+    //   document.querySelectorAll('.work-txt > span').forEach(ele => {
+    //     ele.style.opacity = '1';
+    //   });
 
-      if (wWidth > 960) {
-        leftTrsnfValue = Number(-eleWork.clientHeight / 4 + workScr / 3);
-        rightTrsnfValue = Number(eleWork.clientHeight / 4 - workScr / 3);
-      }
-      else { 
-        leftTrsnfValue = Number(-eleWork.clientHeight / 4 + workScr / 2.5);
-        rightTrsnfValue = Number(eleWork.clientHeight / 4 - workScr / 2.5);
-      }
+    //   if (wWidth > 960) {
+    //     leftTrsnfValue = Number(-eleWork.clientHeight / 4 + workScr / 3);
+    //     rightTrsnfValue = Number(eleWork.clientHeight / 4 - workScr / 3);
+    //   }
+    //   else { 
+    //     leftTrsnfValue = Number(-eleWork.clientHeight / 4 + workScr / 2.5);
+    //     rightTrsnfValue = Number(eleWork.clientHeight / 4 - workScr / 2.5);
+    //   }
 
-      document.querySelector('.work-txt .__left').style.transform = 'translateX(' + leftTrsnfValue + 'px)';
-      document.querySelector('.work-txt .__right').style.transform = 'translateX(' + rightTrsnfValue + 'px)';
-    }
+    //   document.querySelector('.work-txt .__left').style.transform = 'translateX(' + leftTrsnfValue + 'px)';
+    //   document.querySelector('.work-txt .__right').style.transform = 'translateX(' + rightTrsnfValue + 'px)';
+  }
 
+    
+
+
+    
 
     //Project List
     const parallaxPrjList = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting === true) {
+        if (entry.isIntersecting) {
           entry.target.classList.add("view");
         }
         else {
@@ -131,13 +150,13 @@ function ready() {
         }
       });
     });
-    const prjList = document.querySelectorAll(".prj-list");
 
+    const prjList = document.querySelectorAll(".prj-list");
     prjList.forEach((ele, inx) => {
       parallaxPrjList.observe(ele, inx);
     });
 
-  }
+  
 
 
  

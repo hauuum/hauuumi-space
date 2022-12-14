@@ -294,6 +294,7 @@ main .home-introduce .scroll-txt::before, main .home-introduce .scroll-txt::afte
 main .home-introduce .__left {
   top: 0;
   left: -60%;
+  margin-left: 10%;
   margin-bottom: -0.5em;
 }
 @media (max-width: 1023px) {
@@ -312,6 +313,7 @@ main .home-introduce .__left::before {
 main .home-introduce .__right {
   bottom: 0;
   right: -70%;
+  margin-right: 10%;
   margin-top: -0.5em;
 }
 @media (max-width: 1023px) {
@@ -1366,6 +1368,7 @@ footer p {
   top: -8%;
   right: 7%;
   width: 18vw;
+  filter: blur(4px);
   animation-name: planet2;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -1448,12 +1451,15 @@ footer p {
 @keyframes planet4 {
   0% {
     transform: rotate(0deg) translateX(100px) scale(0.4);
+    filter: blur(3px);
   }
   50% {
     transform: rotate(180deg) translateX(100px) scale(1);
+    filter: blur(0);
   }
   100% {
     transform: rotate(360deg) translateX(100px) scale(0.4);
+    filter: blur(3px);
   }
 }
 @media (max-width: 767px) {
@@ -1464,8 +1470,9 @@ footer p {
 
 .planet5 {
   right: 4%;
-  top: 87%;
+  top: 90%;
   width: 18vw;
+  filter: blur(3px);
   animation-name: planet5;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -1479,7 +1486,7 @@ footer p {
 }
 @media (max-width: 767px) {
   .planet5 {
-    top: 92%;
+    top: 94%;
     width: 42vw;
   }
 }
@@ -1496,6 +1503,7 @@ footer p {
   top: -7%;
   left: 12%;
   width: 10.2vw;
+  filter: blur(2px);
   animation-name: spaceStation1;
   animation-duration: 1s;
   animation-iteration-count: infinite;

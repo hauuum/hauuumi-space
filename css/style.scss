@@ -237,6 +237,7 @@ main {
       .__left{
         top: 0;
         left: -60%;
+        margin-left: 10%;
         margin-bottom: -.5em;
         @include tablet{
           left: -80%;
@@ -251,6 +252,7 @@ main {
       .__right{
         bottom: 0;
         right: -70%;
+        margin-right: 10%;
         margin-top: -.5em;
         @include tablet{
           right: -60%;
@@ -1136,6 +1138,7 @@ footer{
   top: -8%;
   right: 7%;
   width: 18vw;
+  filter: blur(4px);
   @include animation(2s, planet2, linear);
   @include keyframe(planet2) {
     0% {
@@ -1197,12 +1200,15 @@ footer{
     @include keyframe(planet4) {
       0% {
         transform: rotate(0deg) translateX(100px) scale(.4);
+        filter: blur(3px);
       }
       50% {
         transform: rotate(180deg) translateX(100px) scale(1);
+        filter: blur(0);
       }
       100% {
         transform: rotate(360deg) translateX(100px) scale(.4);
+        filter: blur(3px);
       }
     }
   }
@@ -1212,14 +1218,15 @@ footer{
 }
 .planet5 {
   right: 4%;
-  top: 87%;
+  top: 90%;
   width: 18vw;
+  filter: blur(3px);
   @include tablet{
     top: 94%;
     width: 26vw;
   }
   @include mobile{
-    top: 92%;
+    top: 94%;
     width: 42vw;
   }
   @include animation(2s, planet5, ease-in-out);
@@ -1237,6 +1244,7 @@ footer{
   top: -7%;
   left: 12%;
   width: 10.2vw;
+  filter: blur(2px);
   @include animation(1s, spaceStation1, linear);
   @include keyframe(spaceStation1) {
     0% {
