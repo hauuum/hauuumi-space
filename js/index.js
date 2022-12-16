@@ -1,35 +1,23 @@
 function ready() {
-  let wWidth = document.documentElement.clientWidth;
-  let currentScrY = document.documentElement.scrollTop;
+  let currentScrY;
   const s1 = document.querySelector('#s1');
-  const intro = s1.querySelector('.home-introduce')
-  const introLeftTxt = s1.querySelector('.__left');
-  const introRightTxt = s1.querySelector('.__right');
-  const strength = s1.querySelector('.home-strength');
   const s2 = document.querySelector('#s2');
   const s3 = document.querySelector('#s3');
-  const eleWork = document.querySelector('.work');
+  const work = document.querySelector('.work');
   const eleHeader = document.querySelector('header');
   const eleNav = document.querySelector('nav');
   const navMemu = document.querySelectorAll('nav > a');
   const eleH1 = document.querySelector('h1');
-  const value = 0.04;
-  let onScroll = true;
 
 
 
-  //Click
-  //Nav Click Event
-  navMemu.forEach((ele) => {
-    ele.classList.remove("active");
-    ele.addEventListener('click', () => {
-      ele.classList.add("active");
-    });
-  });
-  
 
-  //Scroll
-  //Nav Scroll Event
+  //마지막 애니메이션
+  //work video 스크롤 이벤트
+
+
+
+  //Nav dark color
   const changeBlackNav = () => {
     eleHeader.style.backgroundColor = '#0d1213';
     eleNav.style.color = '#fff';
@@ -38,7 +26,7 @@ function ready() {
       ele.classList.remove("active");
     });
   }
-
+  //Nav white color
   const changeWhiteNav = () => {
     eleHeader.style.backgroundColor = '#fafafa';
     eleNav.style.color = '#010506';
@@ -49,6 +37,7 @@ function ready() {
     });
   }
 
+  //Nav color changes by scroll
   const scrollNav = () => {
     currentScrY = document.documentElement.scrollTop;
     changeBlackNav();
@@ -58,7 +47,7 @@ function ready() {
       changeWhiteNav();
       navMemu[1].classList.add("active");
     }
-    if (currentScrY >= eleWork.offsetTop - 20) {
+    if (currentScrY >= work.offsetTop - 20) {
       changeBlackNav();
       navMemu.forEach((ele) => {
         ele.classList.remove("active");
@@ -70,101 +59,107 @@ function ready() {
     }
   }
 
+  //Nav click Event
+  navMemu.forEach((ele) => {
+    ele.classList.remove("active");
+    ele.addEventListener('click', () => {
+      ele.classList.add("active"); 
+    });
+  });
 
+
+  //Main text-decoration changes by scroll
+  const mainTxtShadow = new IntersectionObserver((entries) => {
+    const mainTxtH2 = s1.querySelector('.home-txt h2');
+    const mainTxtEm = s1.querySelector('.home-txt em');
+    
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        mainTxtH2.style.textShadow = '-0.25em 0.25em 0 rgb(0 0 0 / 90%)';
+        mainTxtEm.style.marginLeft = '-5rem';
+        mainTxtEm.style.textShadow = '-0.25em 0.25em 0 rgb(0 0 0 / 90%)';
+      }
+      else {
+        mainTxtH2.style.textShadow = 'none';
+        mainTxtEm.style.marginLeft = '0px';
+        mainTxtEm.style.textShadow = 'none';
+      }
+    });
+  });
+  const homeMain = s1.querySelector('.home-main')
+  mainTxtShadow.observe(homeMain);
+
+
+  //Intro text moves by scroll
+  const scrollIntroTxt = () => {
+    const intro = s1.querySelector('.home-introduce');
+    const introScrollY = Math.round(intro.getBoundingClientRect().y / 10);
+    const introLeftTxt = s1.querySelector('.__left');
+    const introRightTxt = s1.querySelector('.__right');
+
+    if (introScrollY <= intro.offsetHeight) {
+      if (introScrollY > 0) {
+        introLeftTxt.style.left = '-' + introScrollY + '%';
+        introRightTxt.style.right =  '-' + introScrollY + '%';
+      }
+      if (introScrollY < 0) {
+        introLeftTxt.style.left = Math.abs(introScrollY) + '%';
+        introRightTxt.style.right = Math.abs(introScrollY) + '%'; 
+      }
+    }
+  }
+
+  //Project List shows by scroll
+  const parallaxPrjList = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("view");
+      }
+      else {
+        entry.target.classList.remove("view");
+      }
+    });
+  });
+  const prjList = document.querySelectorAll(".prj-list");
+  prjList.forEach((ele, inx) => {
+    parallaxPrjList.observe(ele, inx);
+  });
+
+
+  //Work text moves by scroll
+  const scrollWorkTxt = () => {
+    const workLeftTxt = work.querySelector('.__left');
+    const workRightTxt = work.querySelector('.__right');
+    const workTxtScollY = Math.round(s3.getBoundingClientRect().y / 10 - 80);
+    const workBlockquote = work.querySelector('blockquote');
+    
+    if (work.getBoundingClientRect().y <= 0) {
+      work.querySelectorAll('span').forEach((ele) => {
+        ele.style.opacity = '1';
+      });
+      workLeftTxt.style.left = '-' + workTxtScollY + '%';
+      workRightTxt.style.right = '-' + workTxtScollY + '%';
+      workBlockquote.style.opacity = '1';
+    }
+    else { 
+      workBlockquote.style.opacity = '0';
+      work.querySelectorAll('span').forEach((ele) => {
+        ele.style.opacity = '0';
+      });
+    }
+  }
 
   //Scroll Event
   const scrollParallax = () => {
-    scrollNav();
     currentScrY = document.documentElement.scrollTop;
 
-    const introScrollY = Math.round(intro.getBoundingClientRect().y / 10);
-    console.log(intro.getBoundingClientRect().y);
-
-
-    // let scaleValue;
-    // let leftTrsnfValue;
-    // let rightTrsnfValue;
-
-
-    if (currentScrY == 0 && currentScrY <= document.querySelector('.home-main').offsetHeight) {
-      setTimeout(mainTxtShadow, 1000);
-    }
-
-
-    if (introScrollY <= intro.offsetHeight && currentScrY < strength.offsetTop) {
-      console.log('currentScrY:', currentScrY , 'strength.offsetTop:', strength.offsetTop)
-
-      introLeftTxt.style.left =  '-' + introScrollY + '%';
-
-    }
-
-
-
-    //intro txt
-    // if (currentScrY >= eleIntroduce.offsetTop - eleIntroduce.offsetHeight && currentScrY < s2.offsetHeight) {
-    //   document.querySelector('.home-introduce .__left').style.marginLeft = currentScrY * value + '%';
-    //   document.querySelector('.home-introduce .__right').style.marginLeft = '-' + currentScrY * value + '%';
-    // }
-
-
-    //work txt
-    // if (currentScrY >= eleWork.offsetTop - (eleWork.offsetHeight / 2) && currentScrY < s3.offsetTop - (eleWork.offsetHeight / 2)) {
-    //   scaleValue = Number(currentScrY * 0.00012);
-    //   document.querySelectorAll('.work-txt > span').forEach(ele => {
-    //     ele.style.opacity = '0';
-    //   });
-    // }
-    // if (currentScrY >= eleWork.offsetTop && currentScrY < s3.offsetTop - (eleWork.offsetHeight / 3)) { 
-    //   const workScr = currentScrY - s1.clientHeight - s2.clientHeight;
-
-    //   document.querySelectorAll('.work-txt > span').forEach(ele => {
-    //     ele.style.opacity = '1';
-    //   });
-
-    //   if (wWidth > 960) {
-    //     leftTrsnfValue = Number(-eleWork.clientHeight / 4 + workScr / 3);
-    //     rightTrsnfValue = Number(eleWork.clientHeight / 4 - workScr / 3);
-    //   }
-    //   else { 
-    //     leftTrsnfValue = Number(-eleWork.clientHeight / 4 + workScr / 2.5);
-    //     rightTrsnfValue = Number(eleWork.clientHeight / 4 - workScr / 2.5);
-    //   }
-
-    //   document.querySelector('.work-txt .__left').style.transform = 'translateX(' + leftTrsnfValue + 'px)';
-    //   document.querySelector('.work-txt .__right').style.transform = 'translateX(' + rightTrsnfValue + 'px)';
+    scrollNav();
+    scrollIntroTxt();
+    scrollWorkTxt();
   }
 
-    
 
-
-    
-
-    //Project List
-    const parallaxPrjList = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("view");
-        }
-        else {
-          entry.target.classList.remove("view");
-        }
-      });
-    });
-
-    const prjList = document.querySelectorAll(".prj-list");
-    prjList.forEach((ele, inx) => {
-      parallaxPrjList.observe(ele, inx);
-    });
-
-  
-
-
- 
-
-
-
-  //Animation
-  //twinkle Animation
+  //Twinkle Animation 
   const starWrap = document.querySelector('#star-wrap');
   const star = () => { 
     let num = document.documentElement.clientWidth / 4;
@@ -194,19 +189,6 @@ function ready() {
     }
   }
 
-  //Main Text Animation
-  const mainTxtShadow = () => { 
-    const mainTxtH2 = s1.querySelector('.home-txt h2');
-    const mainTxtEm = s1.querySelector('.home-txt em');
-
-    mainTxtH2.style.textShadow = '-0.25em 0.25em 0 rgb(0 0 0 / 90%)';
-    mainTxtEm.style.marginLeft = '-5rem';
-    mainTxtEm.style.textShadow = '-0.25em 0.25em 0 rgb(0 0 0 / 90%)';
-  }
-
-
-
-  
   //Typing Text Animation
   const typingTarget = document.querySelector('#typing-txt');
   let txtgArr = [
@@ -222,16 +204,6 @@ function ready() {
     return selectStringArr;
   }
 
-  const resetTying = () => { 
-    typingTarget.textContent = "";
-    inx++;
-
-    if (inx == txtgArr.length) { 
-      inx = 0;
-    }
-    dynamic(randomString());
-  }
-
   const dynamic = (randomArr) => { 
     if (randomArr.length > 0) {
       typingTarget.textContent += randomArr.shift();
@@ -244,35 +216,29 @@ function ready() {
     }
   }
 
+  const resetTying = () => { 
+    typingTarget.textContent = "";
+    inx++;
+
+    if (inx == txtgArr.length) { 
+      inx = 0;
+    }
+    dynamic(randomString());
+  }
+
   
-  
-
-  //마지막 이미지 애니메이션
-
-
-
-
-
-
-
   //초기값
   history.scrollRestoration = "manual";
-  setTimeout(mainTxtShadow, 1000);
+  scrollNav();
   scrollParallax();
   star();
   dynamic(randomString());
   
 
-  
-  
-  
-  
   document.addEventListener('scroll', () => {
-
     scrollParallax();
   });
   document.addEventListener('touchMove', () => {
-
     scrollParallax();
   });
   document.addEventListener('touchStart', () => {
@@ -281,29 +247,10 @@ function ready() {
   document.addEventListener('touchEnd', () => {
     scrollParallax();
   });
-  document.addEventListener('resize', () => { 
+  document.addEventListener('resize', () => {
     star();
     scrollParallax();
-  })
-  
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-
-  
-  
-  
-  
+  });
 };
 
 document.addEventListener("DOMContentLoaded", ready); 

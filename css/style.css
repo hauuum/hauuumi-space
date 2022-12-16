@@ -136,7 +136,7 @@ main .home-main .home-txt h2, main .home-main .home-txt em {
   line-height: 1;
   text-transform: uppercase;
   text-shadow: 0px 0px 0 rgba(0, 0, 0, 0.9);
-  transition: 0.4s;
+  transition: 0.6s;
 }
 @media (max-width: 767px) {
   main .home-main .home-txt h2, main .home-main .home-txt em {
@@ -294,18 +294,7 @@ main .home-introduce .scroll-txt::before, main .home-introduce .scroll-txt::afte
 main .home-introduce .__left {
   top: 0;
   left: -60%;
-  margin-left: 10%;
   margin-bottom: -0.5em;
-}
-@media (max-width: 1023px) {
-  main .home-introduce .__left {
-    left: -80%;
-  }
-}
-@media (max-width: 767px) {
-  main .home-introduce .__left {
-    left: -60%;
-  }
 }
 main .home-introduce .__left::before {
   content: "안녕하세요 만나서 반갑습니다";
@@ -313,18 +302,7 @@ main .home-introduce .__left::before {
 main .home-introduce .__right {
   bottom: 0;
   right: -70%;
-  margin-right: 10%;
   margin-top: -0.5em;
-}
-@media (max-width: 1023px) {
-  main .home-introduce .__right {
-    right: -60%;
-  }
-}
-@media (max-width: 767px) {
-  main .home-introduce .__right {
-    right: -40%;
-  }
 }
 main .home-introduce .__right::before {
   content: "지금부터 자기소개를 시작하겠습니다";
@@ -374,6 +352,7 @@ main .home-introduce .home-introduce-box::before {
     width: 150%;
     left: 50%;
     transform: skewX(0deg) translateX(-50%);
+    box-shadow: none;
   }
 }
 main .home-introduce .home-introduce-box::after {
@@ -979,6 +958,11 @@ main .work {
   background: #0d1213;
   overflow: hidden;
 }
+@media (max-width: 767px) {
+  main .work {
+    height: 150vh;
+  }
+}
 main .work .work-bg {
   position: relative;
   height: 100vh;
@@ -987,18 +971,26 @@ main .work .work-bg video {
   position: fixed;
   left: 0;
   top: 0;
-  height: 100%;
+  width: 100%;
+  object-fit: cover;
   opacity: 0.4;
 }
 main .work .work-bg blockquote {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
-  bottom: 15%;
+  bottom: 25%;
   width: 100%;
   padding: 0 1rem;
   box-sizing: border-box;
   text-align: center;
+  opacity: 0;
+  transition: opacity 1s;
+}
+@media (max-width: 1023px) {
+  main .work .work-bg blockquote {
+    bottom: 30%;
+  }
 }
 main .work .work-bg blockquote p {
   font-size: 0.875rem;
@@ -1016,17 +1008,28 @@ main .work .work-bg blockquote cite {
   opacity: 0.4;
 }
 main .work .work-txt {
+  position: fixed;
   display: flex;
   align-content: center;
-  justify-content: center;
-  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 120%;
-  overflow: hidden;
+  text-align: center;
+}
+@media (max-width: 1023px) {
+  main .work .work-txt {
+    top: 40%;
+    transform: translate(-50%, -40%);
+  }
+}
+@media (max-width: 767px) {
+  main .work .work-txt {
+    top: 40%;
+    transform: translate(-50%, -40%);
+  }
 }
 main .work .work-txt span {
+  position: relative;
   font-size: 10rem;
   font-weight: 900;
   line-height: 1;
@@ -1046,20 +1049,10 @@ main .work .work-txt span {
   }
 }
 main .work .work-txt span.__left {
-  transform: translateX(-800px);
-}
-@media (max-width: 1023px) {
-  main .work .work-txt span.__left {
-    transform: translateX(-600px);
-  }
+  left: -100%;
 }
 main .work .work-txt span.__right {
-  transform: translateX(800px);
-}
-@media (max-width: 1023px) {
-  main .work .work-txt span.__right {
-    transform: translateX(600px);
-  }
+  right: -100%;
 }
 main .contact {
   position: sticky;
@@ -1315,6 +1308,7 @@ footer p {
   left: 12%;
   width: 4.8vw;
   transform: rotate(92deg);
+  filter: blur(0);
   animation-name: meteor2;
   animation-duration: 12s;
   animation-iteration-count: infinite;
@@ -1343,10 +1337,11 @@ footer p {
   right: 26%;
   width: 3.4vw;
   transform: rotate(22deg);
+  filter: blur(0);
   animation-name: meteor3;
   animation-duration: 8s;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: ease;
 }
 @keyframes meteor3 {
   100% {

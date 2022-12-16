@@ -103,7 +103,7 @@ main {
           line-height: 1;
           text-transform: uppercase;
           text-shadow: 0px 0px 0 rgba(0,0,0,.9);
-          transition: .4s;
+          transition: .6s;
           @include mobile{
             font-size: 5vw;
           }
@@ -237,14 +237,14 @@ main {
       .__left{
         top: 0;
         left: -60%;
-        margin-left: 10%;
+        // transform: translateX(-60%);
         margin-bottom: -.5em;
-        @include tablet{
-          left: -80%;
-        }
-        @include mobile{
-          left: -60%;
-        } 
+        // @include tablet{
+        //   transform: translateX(-60%);
+        // }
+        // @include mobile{
+        //   transform: translateX(-60%);
+        // } 
         &::before {
           content: '안녕하세요 만나서 반갑습니다';
         }
@@ -252,14 +252,13 @@ main {
       .__right{
         bottom: 0;
         right: -70%;
-        margin-right: 10%;
         margin-top: -.5em;
-        @include tablet{
-          right: -60%;
-        }
-        @include mobile{
-          right: -40%;
-        } 
+        // @include tablet{
+        //   right: -60%;
+        // }
+        // @include mobile{
+        //   right: -40%;
+        // } 
         &::before {
           content: '지금부터 자기소개를 시작하겠습니다';
         }
@@ -300,6 +299,7 @@ main {
             width: 150%;
             left: 50%;
             transform: skewX(0deg) translateX(-50%);
+            box-shadow: none;
           } 
         }
         &::after {
@@ -810,6 +810,9 @@ main {
     height: 200vh;
     background: #0d1213;
     overflow: hidden;
+    @include mobile{
+      height: 150vh;
+    }
     .work-bg {
       position: relative;
       height: 100vh;
@@ -817,18 +820,24 @@ main {
         position: fixed;
         left: 0;
         top: 0;
-        height: 100%;
+        width: 100%;
+        object-fit: cover;
         opacity: .4;
       }
       blockquote {
-        position: absolute;
+        position: fixed;
         left: 0;
         right: 0;
-        bottom: 15%;
+        bottom: 25%;
         width: 100%;
         padding: 0 1rem;
         box-sizing: border-box;
         text-align: center;
+        opacity: 0;
+        transition: opacity 1s;
+        @include tablet{
+          bottom: 30%;
+        }
         p {
           font-size: $font14;
           font-weight: 400;
@@ -845,23 +854,30 @@ main {
       }
     }
     .work-txt {
+      position: fixed;
       display: flex;
       align-content: center;
-      justify-content: center;
-      position: fixed;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      width: 120%;
-      overflow: hidden;
+      text-align: center;
+      @include tablet{
+        top: 40%;
+        transform: translate(-50%, -40%);
+      }
+      @include mobile{
+        top: 40%;
+        transform: translate(-50%, -40%);
+      }
       span {
+        position: relative;
         font-size: 10rem;
         font-weight: 900;
         line-height: 1;
         color: $white;
         white-space: nowrap;
         opacity: 0;
-        transition: .4s;
+        transition:  0.4s;
         @include tablet{
           font-size: 5rem;
         }
@@ -869,22 +885,10 @@ main {
           font-size: 4rem;
         }
         &.__left {
-          transform: translateX(-800px);
-          @include tablet{
-            transform: translateX(-600px);
-          }
-          @include mobile{
-            // margin-right: 28%;
-          }
+          left: -100%;
         }
         &.__right {
-          transform: translateX(800px);
-          @include tablet{
-            transform: translateX(600px);
-          }
-          @include mobile{
-            // margin-left: 28%;
-          }
+          right: -100%;
         }
       }
     }
@@ -1101,6 +1105,7 @@ footer{
   left: 12%;
   width: 4.8vw;
   transform: rotate(92deg);
+  filter: blur(0);
   @include animation(12s, meteor2, linear);
   @include keyframe(meteor2) {
     100% {
@@ -1121,7 +1126,8 @@ footer{
   right: 26%;
   width: 3.4vw;
   transform: rotate(22deg);
-  @include animation(8s, meteor3, ease-in-out);
+  filter: blur(0);
+  @include animation(8s, meteor3, ease);
   @include keyframe(meteor3) {
     100% {
       transform: rotate(382deg);
