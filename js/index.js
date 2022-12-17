@@ -12,8 +12,10 @@ function ready() {
 
 
 
+
+  //포인트 색상 수정하기 (너무 눈에 안보임)
+  //화면 로딩
   //마지막 애니메이션
-  //work video 스크롤 이벤트
 
 
 
@@ -63,7 +65,7 @@ function ready() {
   navMemu.forEach((ele) => {
     ele.classList.remove("active");
     ele.addEventListener('click', () => {
-      ele.classList.add("active"); 
+      ele.classList.add("active");
     });
   });
 
@@ -100,14 +102,30 @@ function ready() {
     if (introScrollY <= intro.offsetHeight) {
       if (introScrollY > 0) {
         introLeftTxt.style.left = '-' + introScrollY + '%';
-        introRightTxt.style.right =  '-' + introScrollY + '%';
+        introRightTxt.style.right = '-' + introScrollY + '%';
       }
       if (introScrollY < 0) {
         introLeftTxt.style.left = Math.abs(introScrollY) + '%';
-        introRightTxt.style.right = Math.abs(introScrollY) + '%'; 
+        introRightTxt.style.right = Math.abs(introScrollY) + '%';
       }
     }
   }
+
+  //Strength text decoration move by scroll 
+  const scrollStrengthTxt = () => {
+    const strengthList = s1.querySelectorAll('.home-strength-list');
+    strengthList.forEach((ele) => {
+      ele.classList.remove('view');
+    });
+
+    if (strengthList[0].getBoundingClientRect().y <= strengthList[0].offsetHeight * 1.5) {
+      strengthList[0].classList.add('view');
+      if (strengthList[1].getBoundingClientRect().y <= strengthList[1].offsetHeight / 2) {
+        strengthList[1].classList.add('view');
+      }
+    }
+  }
+
 
   //Project List shows by scroll
   const parallaxPrjList = new IntersectionObserver((entries) => {
@@ -124,6 +142,18 @@ function ready() {
   prjList.forEach((ele, inx) => {
     parallaxPrjList.observe(ele, inx);
   });
+
+
+
+  //Work video moves by scroll
+  const scrollVideo = () => { 
+    const workScrollY = work.getBoundingClientRect().y;
+    const scaleValue = 1 - workScrollY/1000
+
+    if (workScrollY <= work.offsetHeight/2) { 
+      work.querySelector('video').style.transform = 'translate(-50%, -50%) scale(' + scaleValue + ')';
+    }
+  }
 
 
   //Work text moves by scroll
@@ -155,6 +185,8 @@ function ready() {
 
     scrollNav();
     scrollIntroTxt();
+    scrollStrengthTxt();
+    scrollVideo();
     scrollWorkTxt();
   }
 

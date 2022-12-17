@@ -382,12 +382,12 @@ main {
     &-strength {
       height: auto;
       margin: 0 auto;
-      padding: 10rem 0;
+      padding: 20rem 0;
       @include tablet{
-        padding: 8rem 0;
+        padding: 16rem 0;
       }
       @include mobile{
-        padding: 5rem 0;
+        padding: 10rem 0;
       }
       .home-strength-box,
       .home-career {
@@ -448,14 +448,14 @@ main {
               right: 0;
               bottom: 10px;
               display: block;
-              width: 120%;
+              width: 0;
               height: .2em;
               background: #F9AA4D;
               z-index: -1;
+              transition: width .6s;
               @include mobile {
                 display: none;
-                // width: 100%;
-                // bottom: 4px;
+
               }
             }
           }
@@ -471,14 +471,21 @@ main {
             margin-left: 0;
           }
         }
+        &.view {
+          .mark {
+            &::before {
+              width: 120%;
+            }
+          }
+        }
       }
       .home-strength-box {
-        padding: 16rem 0;
+        margin-bottom: 12rem;
         @include tablet{
-          padding: 7.5rem 0;
+          margin-bottom: 8rem;
         }
         @include mobile{
-          padding: 5rem 0;
+          margin-bottom: 5rem;
         }
         p {
           font-size: $font18;
@@ -817,12 +824,11 @@ main {
       position: relative;
       height: 100vh;
       video {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        object-fit: cover;
-        opacity: .4;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.2);
+        opacity: 0.4;
       }
       blockquote {
         position: fixed;
@@ -1183,7 +1189,7 @@ footer{
     left: 0;
     bottom: 0;
     right: 0;
-    width: 89%;
+    width: 10vw;
     margin-top: -60px;
     margin-left: -60px;
     @include animation(30s, planet3, linear);
@@ -1201,19 +1207,19 @@ footer{
     left: 0;
     bottom: 0;
     right: 0;
-    width: 26%;
+    width: 2vw;
     @include animation(3s, planet4, linear);
     @include keyframe(planet4) {
       0% {
-        transform: rotate(0deg) translateX(100px) scale(.4);
+        transform: rotate(0deg) translateX(6vw) scale(.4);
         filter: blur(3px);
       }
       50% {
-        transform: rotate(180deg) translateX(100px) scale(1);
+        transform: rotate(180deg) translateX(6vw) scale(1);
         filter: blur(0);
       }
       100% {
-        transform: rotate(360deg) translateX(100px) scale(.4);
+        transform: rotate(360deg) translateX(6vw) scale(.4);
         filter: blur(3px);
       }
     }
