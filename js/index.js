@@ -8,6 +8,7 @@ function ready() {
   const eleNav = document.querySelector('nav');
   const navMemu = document.querySelectorAll('nav > a');
   const eleH1 = document.querySelector('h1');
+  const imgs = document.querySelectorAll('.imgs-box img');
 
 
 
@@ -22,6 +23,7 @@ function ready() {
   //Nav dark color
   const changeBlackNav = () => {
     eleHeader.style.backgroundColor = '#0d1213';
+    eleHeader.style.borderBottom = '#000000';
     eleNav.style.color = '#fff';
     eleH1.style.color = '#fff';
     navMemu.forEach((ele) => {
@@ -31,6 +33,7 @@ function ready() {
   //Nav white color
   const changeWhiteNav = () => {
     eleHeader.style.backgroundColor = '#fafafa';
+    eleHeader.style.borderBottom = '1px solid #efefef';
     eleNav.style.color = '#010506';
     eleH1.style.color = '#010506';
 
@@ -148,7 +151,7 @@ function ready() {
   //Work video moves by scroll
   const scrollVideo = () => { 
     const workScrollY = work.getBoundingClientRect().y;
-    const scaleValue = 1 - workScrollY/1000
+    const scaleValue = 1 - workScrollY / 1000
 
     if (workScrollY <= work.offsetHeight/2) { 
       work.querySelector('video').style.transform = 'translate(-50%, -50%) scale(' + scaleValue + ')';
@@ -258,6 +261,42 @@ function ready() {
     dynamic(randomString());
   }
 
+
+  //Move image Animation
+  // const moveImg = (e) => { 
+  //   console.log(e.clientX, e.clientY);
+    
+  // }
+  imgs.forEach((ele) => {
+    const initX = ele.offsetLeft;
+    const initY = ele.offsetTop;
+    // console.log(initX, initY);
+
+    ele.addEventListener('mousemove', (e) => { 
+      let mouseX = e.clientX;
+      let mouseY = e.clientY;
+      let totalX = initX - mouseX;
+      let totalY = initY - mouseY;
+
+      console.log(totalX, totalY);
+      ele.style.marginLeft = mouseX;
+      ele.style.marginTop = mouseY;
+      //ele.style.transform = 'translate(' + totalX + ',' + totalY + ')';
+
+      //console.log(mouseX, mouseY)
+
+      // ele.style.marginLeft = mouseX
+      // ele.style.marginTop = mouseY
+      // console.log(mouseX, mouseY)
+    }); 
+
+    ele.addEventListener('mouseleave', () => { 
+      // ele.style.left = initX;
+      // ele.style.top = initY;
+    })
+  })
+  
+
   
   //초기값
   history.scrollRestoration = "manual";
@@ -283,6 +322,10 @@ function ready() {
     star();
     scrollParallax();
   });
+  // document.addEventListener('mousemove', (e) => { 
+  //   moveImg(e);
+  // })
+
 };
 
 document.addEventListener("DOMContentLoaded", ready); 

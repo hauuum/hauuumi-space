@@ -6,6 +6,7 @@ header {
   position: fixed;
   width: 100%;
   padding: .5rem 0;
+  border-bottom: 1px solid #efefef;
   box-sizing: border-box;
   z-index: 100;
   transition: .2s;
@@ -218,7 +219,7 @@ main {
         line-height: 1;
         color: $pink;
         white-space: nowrap;
-        transition: .1s;
+        transition: .4s;
         @include tablet{
           font-size: 4rem;
         }
@@ -232,6 +233,7 @@ main {
           color: transparent;
           -webkit-text-stroke: 1px $pink;
           z-index: 3;
+          transition: .4s;
         }
       }
       .__left{
@@ -439,7 +441,8 @@ main {
             @include mobile {
               font-size: 2.5rem;
               text-decoration-line: underline;
-              text-decoration-color: #F9AA4D;
+              text-decoration-color: #ff7200;
+              // text-decoration-color: #F9AA4D;
               text-decoration-thickness: 6px;
             }
             &::before {
@@ -450,7 +453,8 @@ main {
               display: block;
               width: 0;
               height: .2em;
-              background: #F9AA4D;
+              background: #ff7200;;
+              // background: #F9AA4D;
               z-index: -1;
               transition: width .6s;
               @include mobile {
@@ -829,6 +833,7 @@ main {
         top: 50%;
         transform: translate(-50%, -50%) scale(0.2);
         opacity: 0.4;
+        transition: 0.2s;
       }
       blockquote {
         position: fixed;
@@ -1078,7 +1083,7 @@ footer{
     display: block;
     background-color: #fff;
     border-radius: 50%;
-    box-shadow: 0 0 1px 2px rgba(43,29,214,.6), 0 0 1px 6px rgba(43,29,214,.1);
+    box-shadow: 0 0 6px 3px rgba(43,29,214,.6), 0 0 1px 6px rgba(43,29,214,.1);
     @include animation(twinkle,1s,ease-in-out);
   }
 }
@@ -1165,7 +1170,7 @@ footer{
   }
   @include mobile{
     top: -6%;
-    width: 32vw;
+    width: 38vw;
     @include animation(2s, planet2, linear);
     @include keyframe(planet2) {
       0% {
@@ -1231,7 +1236,7 @@ footer{
 .planet5 {
   right: 4%;
   top: 90%;
-  width: 18vw;
+  width: 20vw;
   filter: blur(3px);
   @include tablet{
     top: 94%;
@@ -1239,23 +1244,23 @@ footer{
   }
   @include mobile{
     top: 94%;
-    width: 42vw;
+    width: 54vw;
   }
   @include animation(2s, planet5, ease-in-out);
   @include keyframe(planet5) {
     0%, 100% {
-      transform: translateY(0.5rem);
+      transform: translateY(1rem);
     }
     50% {
-      transform:  translateY(-0.5rem);
+      transform:  translateY(-1rem);
     }
   }
 }
 
 .spaceStation1 {
   top: -7%;
-  left: 12%;
-  width: 10.2vw;
+  left: 8%;
+  width: 13vw;
   filter: blur(2px);
   @include animation(1s, spaceStation1, linear);
   @include keyframe(spaceStation1) {
@@ -1267,7 +1272,7 @@ footer{
     }
   }
   @include tablet{
-    width: 11.4vw;
+    width: 18.4vw;
   }
   @include mobile{
     display: none;
@@ -1275,8 +1280,8 @@ footer{
 }
 .astronaut1 {
   top: 8%;
-  right: 5%;
-  width: 17vw;
+  right: 12%;
+  width: 16vw;
   transform: rotate(-8deg);
   @include animation(2s, astronaut1, ease-in-out);
   @include keyframe(astronaut1) {
@@ -1288,10 +1293,12 @@ footer{
     }
   }
   @include tablet{
+    right: 8%;
     top: 4%;
     width: 20.4vw;
   }
   @include mobile{
+    right: 0;
     top: 1%;
     width: 32vw;
   }

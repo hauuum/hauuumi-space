@@ -20,6 +20,7 @@ header {
   position: fixed;
   width: 100%;
   padding: 0.5rem 0;
+  border-bottom: 1px solid #efefef;
   box-sizing: border-box;
   z-index: 100;
   transition: 0.2s;
@@ -272,7 +273,7 @@ main .home-introduce .scroll-txt {
   line-height: 1;
   color: #D04963;
   white-space: nowrap;
-  transition: 0.1s;
+  transition: 0.4s;
 }
 @media (max-width: 1023px) {
   main .home-introduce .scroll-txt {
@@ -290,6 +291,7 @@ main .home-introduce .scroll-txt::before, main .home-introduce .scroll-txt::afte
   color: transparent;
   -webkit-text-stroke: 1px #D04963;
   z-index: 3;
+  transition: 0.4s;
 }
 main .home-introduce .__left {
   top: 0;
@@ -537,7 +539,7 @@ main .home-strength .home-career h3 .mark {
   main .home-strength .home-career h3 .mark {
     font-size: 2.5rem;
     text-decoration-line: underline;
-    text-decoration-color: #F9AA4D;
+    text-decoration-color: #ff7200;
     text-decoration-thickness: 6px;
   }
 }
@@ -550,7 +552,7 @@ main .home-strength .home-career h3 .mark::before {
   display: block;
   width: 0;
   height: 0.2em;
-  background: #F9AA4D;
+  background: #ff7200;
   z-index: -1;
   transition: width 0.6s;
 }
@@ -978,6 +980,7 @@ main .work .work-bg video {
   top: 50%;
   transform: translate(-50%, -50%) scale(0.2);
   opacity: 0.4;
+  transition: 0.2s;
 }
 main .work .work-bg blockquote {
   position: fixed;
@@ -1267,7 +1270,7 @@ footer p {
   display: block;
   background-color: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 1px 2px rgba(43, 29, 214, 0.6), 0 0 1px 6px rgba(43, 29, 214, 0.1);
+  box-shadow: 0 0 6px 3px rgba(43, 29, 214, 0.6), 0 0 1px 6px rgba(43, 29, 214, 0.1);
   animation-name: 1s;
   animation-duration: twinkle;
   animation-iteration-count: infinite;
@@ -1389,7 +1392,7 @@ footer p {
 @media (max-width: 767px) {
   .planet2 {
     top: -6%;
-    width: 32vw;
+    width: 38vw;
     animation-name: planet2;
     animation-duration: 2s;
     animation-iteration-count: infinite;
@@ -1470,7 +1473,7 @@ footer p {
 .planet5 {
   right: 4%;
   top: 90%;
-  width: 18vw;
+  width: 20vw;
   filter: blur(3px);
   animation-name: planet5;
   animation-duration: 2s;
@@ -1486,22 +1489,22 @@ footer p {
 @media (max-width: 767px) {
   .planet5 {
     top: 94%;
-    width: 42vw;
+    width: 54vw;
   }
 }
 @keyframes planet5 {
   0%, 100% {
-    transform: translateY(0.5rem);
+    transform: translateY(1rem);
   }
   50% {
-    transform: translateY(-0.5rem);
+    transform: translateY(-1rem);
   }
 }
 
 .spaceStation1 {
   top: -7%;
-  left: 12%;
-  width: 10.2vw;
+  left: 8%;
+  width: 13vw;
   filter: blur(2px);
   animation-name: spaceStation1;
   animation-duration: 1s;
@@ -1518,7 +1521,7 @@ footer p {
 }
 @media (max-width: 1023px) {
   .spaceStation1 {
-    width: 11.4vw;
+    width: 18.4vw;
   }
 }
 @media (max-width: 767px) {
@@ -1529,8 +1532,8 @@ footer p {
 
 .astronaut1 {
   top: 8%;
-  right: 5%;
-  width: 17vw;
+  right: 12%;
+  width: 16vw;
   transform: rotate(-8deg);
   animation-name: astronaut1;
   animation-duration: 2s;
@@ -1547,12 +1550,14 @@ footer p {
 }
 @media (max-width: 1023px) {
   .astronaut1 {
+    right: 8%;
     top: 4%;
     width: 20.4vw;
   }
 }
 @media (max-width: 767px) {
   .astronaut1 {
+    right: 0;
     top: 1%;
     width: 32vw;
   }
