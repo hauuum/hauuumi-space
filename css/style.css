@@ -1159,13 +1159,28 @@ main .contact p a::before {
   width: 100%;
   height: 2px;
   background: #D04963;
-  transform-origin: 100% 50%;
-  transform: scale(0, 1);
-  transition: transform 0.3s ease-in-out;
+  animation-name: textdecoration;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
 }
-main .contact p a:hover::before, main .contact p a:focus::before {
-  transform: scale(1, 1);
-  transform-origin: 0 50%;
+@keyframes textdecoration {
+  0% {
+    transform: scale(0, 1);
+    transform-origin: 0% 100%;
+  }
+  30% {
+    transform: scale(1, 1);
+    transform-origin: 0% 100%;
+  }
+  60% {
+    transform: scale(1, 1);
+    transform-origin: 100% 100%;
+  }
+  100% {
+    transform: scale(0, 1);
+    transform-origin: 100% 100%;
+  }
 }
 main .contact .imgs-box {
   width: 100%;

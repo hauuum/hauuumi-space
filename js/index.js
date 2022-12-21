@@ -8,7 +8,7 @@ function ready() {
   const eleNav = document.querySelector('nav');
   const navMemu = document.querySelectorAll('nav > a');
   const eleH1 = document.querySelector('h1');
-  const imgs = document.querySelectorAll('.imgs-box img');
+  const imgs= document.querySelectorAll('.imgs-box > img');
 
 
 
@@ -262,38 +262,26 @@ function ready() {
   }
 
 
+
+
+
+
   //Move image Animation
-  // const moveImg = (e) => { 
-  //   console.log(e.clientX, e.clientY);
+  imgs.forEach((ele, inx) => { 
+    let x, y;
+
+    ele.addEventListener('mousemove', function (e) {
+      x = e.clientX;
+      y = e.clientY;
+
+      console.log(x, y)
+
+      ele.style.marginLeft = x;
+
+    });
+
     
-  // }
-  imgs.forEach((ele) => {
-    const initX = ele.offsetLeft;
-    const initY = ele.offsetTop;
-    // console.log(initX, initY);
 
-    ele.addEventListener('mousemove', (e) => { 
-      let mouseX = e.clientX;
-      let mouseY = e.clientY;
-      let totalX = initX - mouseX;
-      let totalY = initY - mouseY;
-
-      console.log(totalX, totalY);
-      ele.style.marginLeft = mouseX;
-      ele.style.marginTop = mouseY;
-      //ele.style.transform = 'translate(' + totalX + ',' + totalY + ')';
-
-      //console.log(mouseX, mouseY)
-
-      // ele.style.marginLeft = mouseX
-      // ele.style.marginTop = mouseY
-      // console.log(mouseX, mouseY)
-    }); 
-
-    ele.addEventListener('mouseleave', () => { 
-      // ele.style.left = initX;
-      // ele.style.top = initY;
-    })
   })
   
 
