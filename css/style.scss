@@ -441,8 +441,8 @@ main {
             @include mobile {
               font-size: 2.5rem;
               text-decoration-line: underline;
-              text-decoration-color: #ff7200;
-              // text-decoration-color: #F9AA4D;
+              // text-decoration-color: #ff7200;
+              text-decoration-color: #F9AA4D;
               text-decoration-thickness: 6px;
             }
             &::before {
@@ -456,7 +456,7 @@ main {
               background: #ff7200;;
               // background: #F9AA4D;
               z-index: -1;
-              transition: width .6s;
+              transition: width .8s;
               @include mobile {
                 display: none;
 
@@ -635,10 +635,7 @@ main {
       width: 90%;
       margin-top: 8rem;
       opacity: 0;
-      transition: 1s;
-      &.view {
-        opacity: 1;
-      }
+      transition: opacity 1s;
       @include tablet{
         width: 100%;
         margin-top: 5rem;
@@ -647,15 +644,41 @@ main {
         width: 100%;
         flex-direction: column;
       }
+      &.prj-left {
+        .prj-desc {
+          margin-right: -1.875rem;
+        }
+        &.view {
+          opacity: 1;
+          .prj-desc {
+            margin-right: 0;
+            @include mobile{
+              margin-left: 0;
+            }
+          }
+        }
+      }
+      &.prj-right {
+        .prj-desc {
+          margin-left: -1.875rem;
+        }
+        &.view {
+          opacity: 1;
+          .prj-desc {
+            margin-left: 0;
+            @include mobile{
+              margin-left: 0;
+            }
+          }
+        }
+      }
       .prj-img {
         position: relative;
         width: 58%;
         border: 1px solid #e0e0e0;
         box-sizing: border-box;
+        transition: .4s;
         overflow: hidden;
-        // @include tablet{
-        //   width: 100%;
-        // }
         @include mobile{
           flex-direction: column;
           width: 100%;
@@ -691,12 +714,12 @@ main {
       }
       .prj-desc {
         width: calc(42% - 2.5rem);
+        transition: .8s;
         @include tablet{
           width: calc(42% - 1.25rem);
         }
         @include mobile{
           width: 100%;
-          margin-top: 1.25rem;
           order: 2;
         }
         h3 {
@@ -777,15 +800,15 @@ main {
             width: 2.142857em;
             height: 2.142857em;
             border-radius: 50%;
-            background: #FFCA8C;
-            opacity: .6;
+            background: #d04963;
+            opacity: .4;
             transition: .2s;
             @include tablet{
               display: inline-block;
               width: 100%;
               height: 2.625rem;
               border-radius: 4px;
-              background: $yellow;
+              background: #d04963;
               opacity: 1;
             }
           }
@@ -796,7 +819,7 @@ main {
               width: 100%;
               height: 2.625rem;
               border-radius: 4px;
-              background: $yellow;
+              background: #d04963;
               opacity: 1;
               
             }
@@ -833,9 +856,9 @@ main {
         top: 50%;
         transform: translate(-50%, -50%) scale(0.2);
         opacity: 0.4;
-        transition: 0.2s;
+        transition: .1s;
       }
-      blockquote {
+      p {
         position: fixed;
         left: 0;
         right: 0;
@@ -846,21 +869,12 @@ main {
         text-align: center;
         opacity: 0;
         transition: opacity 1s;
+        font-size: $font16;
+        font-weight: 400;
+        color: $white;
         @include tablet{
-          bottom: 30%;
-        }
-        p {
+          bottom: 40%;
           font-size: $font14;
-          font-weight: 400;
-          color: $white;
-          @include mobile{
-            font-size: $font12;
-          }
-        }
-        cite {
-          font-size: $font12;
-          color: $white;
-          opacity: .4;
         }
       }
     }
@@ -953,7 +967,7 @@ main {
         font-size: 3.25rem;
       }
     }
-    p {
+    .contact-txt {
       width: 100%;;
       text-align: center;
       font-weight: 400;
@@ -983,7 +997,7 @@ main {
           width: 100%;
           height: 2px;
           background: $pink;
-          @include animation(.8s, textdecoration, ease-in-out);
+          @include animation(1.4s, textdecoration, ease-in-out);
           @include keyframe(textdecoration) {
             0% {
               transform: scale(0, 1);
@@ -1006,58 +1020,95 @@ main {
       }
     }
     .imgs-box {
+      position: relative;
       width: 100%;
       display: flex;
       align-items: flex-start;
       flex-wrap: wrap;
       margin-top: 6.25rem;
+      overflow: hidden;
       @include mobile{
         margin-top: 4rem;
       }
-      img{
-        border: 6px solid $white;
+      .space-img {
+        position: relative;
+        border: 2px solid $white;
+        border-radius: 8px;
         box-sizing: border-box;
-        @include mobile{
-          border: 2px solid $white;
-        }
+        overflow: hidden;
         &:nth-of-type(1) {
           width: 40%;
           margin: 0 3% 0 16%;
+          transition: .4s;
           @include mobile{
-            width: 52%;
-            margin: 0 0 0 12%;
+            width: 56%;
+            margin: 0 3% 0 0%;
           }
         }
         &:nth-of-type(2){
           width: 26%;
           margin: 7% 0 0 0;
+          transition: .6s;
           @include mobile{
-            width: 32%;
-            margin: 12% 0 0 -8%;
+            width: 48%;
+            margin: 6% 0 0 -8%;
           }
         }
         &:nth-of-type(3){
           width: 28%;
           margin: -14% 2% 0 8%;
+          transition: .2s;
           @include mobile{
-            width: 38%;
-            margin: -11% -9% 0 2%;
+            width: 52%;
+            margin: -26% -9% 0 4%;
           }
         }
         &:nth-of-type(4){
           width: 31%;
           margin: -10% 6% 0 0;
+          transition: 0.2s;
           @include mobile{
             width: 46%;
-            margin: -4% 3% 0 4%;
+            margin: -3% 3% 0 -4%;
           }
         }
         &:nth-of-type(5){
           width: 28%;
           margin: 5% 4% 0 -13%;
+          transition: .6s;
           @include mobile{
-            width: 38%;
-            margin: -16% 0 0 61%;
+            width: 64%;
+            margin: -11% 4% 0 27%;
+          }
+        }
+        img {
+          width: 100%;
+        }
+        .img-desc {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          background: rgba(15,15,19,.8);
+          color: $white;
+          transition: opacity .2s;
+          padding: 0.5rem;
+          box-sizing: border-box;
+          p {
+            font-size: $font14;
+            margin-bottom: .5em;;
+            @include tablet {
+              font-size: $font12;
+            }
+          }
+          cite {
+            font-size: $font12;
+            opacity: .6;
           }
         }
       }

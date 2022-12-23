@@ -1,5 +1,6 @@
 function ready() {
   let currentScrY;
+  let wWidth;
   const s1 = document.querySelector('#s1');
   const s2 = document.querySelector('#s2');
   const s3 = document.querySelector('#s3');
@@ -8,17 +9,9 @@ function ready() {
   const eleNav = document.querySelector('nav');
   const navMemu = document.querySelectorAll('nav > a');
   const eleH1 = document.querySelector('h1');
-  const imgs= document.querySelectorAll('.imgs-box > img');
 
 
-
-
-
-  //포인트 색상 수정하기 (너무 눈에 안보임)
   //화면 로딩
-  //마지막 애니메이션
-
-
 
   //Nav dark color
   const changeBlackNav = () => {
@@ -72,7 +65,6 @@ function ready() {
     });
   });
 
-
   //Main text-decoration changes by scroll
   const mainTxtShadow = new IntersectionObserver((entries) => {
     const mainTxtH2 = s1.querySelector('.home-txt h2');
@@ -94,7 +86,6 @@ function ready() {
   const homeMain = s1.querySelector('.home-main')
   mainTxtShadow.observe(homeMain);
 
-
   //Intro text moves by scroll
   const scrollIntroTxt = () => {
     const intro = s1.querySelector('.home-introduce');
@@ -112,6 +103,8 @@ function ready() {
         introRightTxt.style.right = Math.abs(introScrollY) + '%';
       }
     }
+
+    document.removeEventListener('scroll', scrollIntroTxt);
   }
 
   //Strength text decoration move by scroll 
@@ -129,7 +122,6 @@ function ready() {
     }
   }
 
-
   //Project List shows by scroll
   const parallaxPrjList = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -146,8 +138,6 @@ function ready() {
     parallaxPrjList.observe(ele, inx);
   });
 
-
-
   //Work video moves by scroll
   const scrollVideo = () => { 
     const workScrollY = work.getBoundingClientRect().y;
@@ -156,15 +146,16 @@ function ready() {
     if (workScrollY <= work.offsetHeight/2) { 
       work.querySelector('video').style.transform = 'translate(-50%, -50%) scale(' + scaleValue + ')';
     }
-  }
 
+    document.removeEventListener('scroll', scrollVideo);
+  }
 
   //Work text moves by scroll
   const scrollWorkTxt = () => {
     const workLeftTxt = work.querySelector('.__left');
     const workRightTxt = work.querySelector('.__right');
     const workTxtScollY = Math.round(s3.getBoundingClientRect().y / 10 - 80);
-    const workBlockquote = work.querySelector('blockquote');
+    const workDesc = work.querySelector('p');
     
     if (work.getBoundingClientRect().y <= 0) {
       work.querySelectorAll('span').forEach((ele) => {
@@ -172,14 +163,16 @@ function ready() {
       });
       workLeftTxt.style.left = '-' + workTxtScollY + '%';
       workRightTxt.style.right = '-' + workTxtScollY + '%';
-      workBlockquote.style.opacity = '1';
+      workDesc.style.opacity = '1';
     }
     else { 
-      workBlockquote.style.opacity = '0';
+      workDesc.style.opacity = '0';
       work.querySelectorAll('span').forEach((ele) => {
         ele.style.opacity = '0';
       });
     }
+
+    document.removeEventListener('scroll', scrollWorkTxt);
   }
 
   //Scroll Event
@@ -192,7 +185,6 @@ function ready() {
     scrollVideo();
     scrollWorkTxt();
   }
-
 
   //Twinkle Animation 
   const starWrap = document.querySelector('#star-wrap');
@@ -261,59 +253,44 @@ function ready() {
     dynamic(randomString());
   }
 
-
-
-
-
-
   //Move image Animation
-  imgs.forEach((ele, inx) => { 
-    let x, y;
-
-    ele.addEventListener('mousemove', function (e) {
-      x = e.clientX;
-      y = e.clientY;
-
-      console.log(x, y)
-
-      ele.style.marginLeft = x;
-
-    });
-
+  const imgMove = (e) => {
+    wWidth = window.outerWidth;
     
-
-  })
+    if (wWidth >= 768) {
+      this.querySelectorAll('.space-img').forEach(ele => {
+        const speed = ele.getAttribute('data-speed');
+        const x = (window.innerWidth - e.clientX * speed) / 100;
+        const y = (window.innerWidth - e.clientY * speed) / 100;
   
-
+        ele.style.transform = `translate(${x}px, ${y}px)`;
+      })
+    }
+    else { 
+      this.querySelectorAll('.space-img').forEach(ele => {
+        ele.style.transform = `translate(0px, 0px)`;
+      })
+    }
+  }
   
-  //초기값
+  
+  //Default
   history.scrollRestoration = "manual";
   scrollNav();
   scrollParallax();
   star();
   dynamic(randomString());
   
-
-  document.addEventListener('scroll', () => {
-    scrollParallax();
-  });
-  document.addEventListener('touchMove', () => {
-    scrollParallax();
-  });
-  document.addEventListener('touchStart', () => {
-    scrollParallax();
-  });
-  document.addEventListener('touchEnd', () => {
-    scrollParallax();
-  });
+  document.addEventListener('scroll', scrollParallax);
+  document.addEventListener('touchMove', scrollParallax);
+  document.addEventListener('touchStart', scrollParallax);
+  document.addEventListener('touchEnd', scrollParallax);
+  document.addEventListener('mousemove', imgMove);
   document.addEventListener('resize', () => {
     star();
     scrollParallax();
+    imgMove();
   });
-  // document.addEventListener('mousemove', (e) => { 
-  //   moveImg(e);
-  // })
-
 };
 
 document.addEventListener("DOMContentLoaded", ready); 
