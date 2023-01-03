@@ -1,4 +1,4 @@
-function ready() {
+window.onload = () => {
   let currentScrY;
   let wWidth;
   const s1 = document.querySelector('#s1');
@@ -11,7 +11,8 @@ function ready() {
   const eleH1 = document.querySelector('h1');
 
 
-  //화면 로딩
+  // 화면 로딩
+  // https://imagesloaded.desandro.com/ 
 
   //Nav dark color
   const changeBlackNav = () => {
@@ -258,7 +259,7 @@ function ready() {
     wWidth = window.outerWidth;
     
     if (wWidth >= 768) {
-      this.querySelectorAll('.space-img').forEach(ele => {
+      document.querySelectorAll('.space-img').forEach(ele => {
         const speed = ele.getAttribute('data-speed');
         const x = (window.innerWidth - e.clientX * speed) / 100;
         const y = (window.innerWidth - e.clientY * speed) / 100;
@@ -267,9 +268,9 @@ function ready() {
       })
     }
     else { 
-      this.querySelectorAll('.space-img').forEach(ele => {
+      document.querySelectorAll('.space-img').forEach(ele => {
         ele.style.transform = `translate(0px, 0px)`;
-      })
+      });
     }
   }
   
@@ -290,7 +291,8 @@ function ready() {
     star();
     scrollParallax();
     imgMove();
+
   });
 };
 
-document.addEventListener("DOMContentLoaded", ready); 
+// document.addEventListener("DOMContentLoaded", ready); 
