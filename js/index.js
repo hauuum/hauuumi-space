@@ -11,9 +11,6 @@ window.onload = () => {
   const eleH1 = document.querySelector('h1');
 
 
-  // 화면 로딩
-  // https://imagesloaded.desandro.com/ 
-
   //Nav dark color
   const changeBlackNav = () => {
     eleHeader.style.backgroundColor = '#0d1213';
@@ -58,7 +55,7 @@ window.onload = () => {
     }
   }
 
-  //Nav click Event
+  //Nav click event
   navMemu.forEach((ele) => {
     ele.classList.remove("active");
     ele.addEventListener('click', () => {
@@ -104,7 +101,6 @@ window.onload = () => {
         introRightTxt.style.right = Math.abs(introScrollY) + '%';
       }
     }
-
     document.removeEventListener('scroll', scrollIntroTxt);
   }
 
@@ -147,7 +143,6 @@ window.onload = () => {
     if (workScrollY <= work.offsetHeight/2) { 
       work.querySelector('video').style.transform = 'translate(-50%, -50%) scale(' + scaleValue + ')';
     }
-
     document.removeEventListener('scroll', scrollVideo);
   }
 
@@ -172,7 +167,6 @@ window.onload = () => {
         ele.style.opacity = '0';
       });
     }
-
     document.removeEventListener('scroll', scrollWorkTxt);
   }
 
@@ -274,7 +268,6 @@ window.onload = () => {
     }
   }
   
-  
   //Default
   history.scrollRestoration = "manual";
   scrollNav();
@@ -291,8 +284,6 @@ window.onload = () => {
     star();
     scrollParallax();
     imgMove();
-
   });
+  
 };
-
-// document.addEventListener("DOMContentLoaded", ready); 
