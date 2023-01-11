@@ -53,6 +53,16 @@
   border-radius: 3px;
   overflow: hidden;
 }
+@media (max-width: 1023px) {
+  #progress .progress-bar {
+    width: 40%;
+  }
+}
+@media (max-width: 767px) {
+  #progress .progress-bar {
+    width: 60%;
+  }
+}
 #progress .progress-bar .bar {
   display: block;
   width: 1%;
@@ -253,12 +263,12 @@ main .home-main .home-txt .home-next-btn a i {
 }
 @media (max-width: 1023px) {
   main .home-main .home-txt .home-next-btn a i {
-    font-size: 1.25rem;
+    font-size: 0.875rem;
   }
 }
 @media (max-width: 767px) {
   main .home-main .home-txt .home-next-btn a i {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 }
 main .home-intro .row {
@@ -1005,6 +1015,7 @@ main .project .prj-list .prj-desc .go-to-btn {
 @media (max-width: 1023px) {
   main .project .prj-list .prj-desc .go-to-btn {
     color: #fff;
+    padding: 0.5rem 1.25rem;
   }
 }
 main .project .prj-list .prj-desc .go-to-btn span {
@@ -1468,7 +1479,7 @@ footer p {
 }
 @media (max-width: 767px) {
   .meteor1 {
-    top: 0.4%;
+    top: 1.4%;
     width: 8.4vw;
   }
 }

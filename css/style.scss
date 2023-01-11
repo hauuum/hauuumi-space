@@ -37,6 +37,12 @@
     background: #e1e4e8;
     border-radius: 3px;
     overflow: hidden;
+    @include tablet{
+      width: 40%;
+    } 
+    @include mobile{
+      width: 60%;
+    } 
     .bar {
       display: block;
       width: 1%;
@@ -207,10 +213,10 @@ main {
               font-weight: $weight400;
               margin-left: .25rem;
               @include tablet{
-                font-size: $font20;
+                font-size: $font14;
               }
               @include mobile{
-                font-size: $font16;
+                font-size: $font12;
               }
             }
           }
@@ -851,6 +857,7 @@ main {
           transition: .2s;
           @include tablet{
             color: $white;
+            padding: 0.5rem 1.25rem;
           }
           span {
             position: relative;
@@ -1256,7 +1263,7 @@ footer{
     width: 6.2vw;
   }
   @include mobile{
-    top: 0.4%;
+    top: 1.4%;
     width: 8.4vw;
   }
 }
