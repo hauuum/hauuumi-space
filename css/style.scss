@@ -1,6 +1,65 @@
 @import url(./reset.css);
 @import './utils';
 
+
+.scroll-lock {
+  overflow-y: hidden;
+}
+#progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #fff;
+  z-index: 1000;
+  transition: top 1.6s;
+  .progress-num {
+    font-family: "TmonMonsori";
+    font-size: 2rem;
+    font-weight: 600;
+    color: $black42;
+    margin-bottom: 1rem;
+    .num {
+      font-family: "TmonMonsori";
+      font-size: 2rem;
+      font-weight: 600;
+      color: $black42;
+    }
+  }
+  .progress-bar {
+    width: 20%;
+    height: 6px;
+    background: #e1e4e8;
+    border-radius: 3px;
+    overflow: hidden;
+    .bar {
+      display: block;
+      width: 1%;
+      height: 100%;
+      background: linear-gradient(90deg,#ffd33d,#ea4aaa 17%,#b34bff 34%,#01feff 51%,#ffd33d 68%,#ea4aaa 85%,#b34bff);
+      background-size: 300% 100%;
+      @include animation(2s, progress, linear);
+      @include keyframe(progress) {
+        0% {
+          background-position: 100%;
+        }
+        100% {
+          background-position: 0;
+        }
+      }
+    }
+  }
+
+  &.hide {
+    top: -1000vh;
+  }
+}
+
 /* HEADER */
 header {
   position: fixed;
@@ -64,6 +123,16 @@ main {
     background: url(../assets/imgs/bg2.png) center center repeat;
     background-attachment: fixed;
     background-size: contain;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+    }
     @include mobile{
       background-size: cover;
     }
@@ -78,7 +147,7 @@ main {
     }
     &-main {
       img{
-        width: 24vw;
+        width: 22vw;
         @include tablet{
           width: 36vw;
         }
@@ -133,7 +202,9 @@ main {
             justify-content: flex-end;
             font-weight: $weight600;
             color: $pink;
-            span {
+            i {
+              // font-size: $font14;
+              font-weight: $weight400;
               margin-left: .25rem;
               @include tablet{
                 font-size: $font20;
@@ -159,7 +230,7 @@ main {
           }
         }
         p{
-          font-size: $font42;
+          font-size: $font40;
           font-weight: 600;
           text-align: center;
           color: $white;
@@ -171,14 +242,14 @@ main {
           }
           .mark {
             display: inline-block;
-            font-size: $font42;
-            font-weight: 900;
+            font-size: $font40;
+            font-weight: 600;
             padding: .0476190em .19047619em;
             background: $yellow;
             color: $mainBlack;
             margin-right: .5rem;
             @include tablet{
-              font-size: 2.25rem;
+              font-size: 2rem;
             }
             @include mobile{
               font-size: 1.5rem;
@@ -384,9 +455,9 @@ main {
     &-strength {
       height: auto;
       margin: 0 auto;
-      padding: 20rem 0;
+      padding: 16rem 0 12rem;
       @include tablet{
-        padding: 16rem 0;
+        padding: 14rem 0 10rem;
       }
       @include mobile{
         padding: 10rem 0;
@@ -407,7 +478,7 @@ main {
         }
           h3 {
           flex: none;
-          font-size: 3.75rem;
+          font-size: 3.25rem;
           color: $white;
           text-align: right;
           font-weight: 600;
@@ -429,7 +500,7 @@ main {
           }
           .mark {
             position: relative;
-            font-size: 3.75rem;
+            font-size: 3.25rem;
             font-weight: 600;
             color: $white;
             padding: 0;
@@ -773,6 +844,7 @@ main {
           position: relative;
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           padding: .5rem .5rem .5rem 1.25rem;
           box-sizing: border-box;
           color: $black42;
@@ -782,12 +854,21 @@ main {
           }
           span {
             position: relative;
-            &.btn-txt {
+            font-size: $font12;
+            font-weight: 600;
+            @include tablet{
+              color: $white;
+            }
+            i{
+              position: relative;
+              z-index: 1;
               font-size: $font12;
-              font-weight: 600;
+              color: $black42; 
+              margin-left: 0.25rem;
+              margin-top: 0.125rem;
               @include tablet{
                 color: $white;
-              }
+              } 
             }
           }
           &::before {
@@ -816,15 +897,17 @@ main {
           &:hover,
           &:focus{
             color: $white;
+            padding: 0.5rem 1.25rem;
             &::before {
               width: 100%;
               height: 2.625rem;
               border-radius: 4px;
               background: #d04963;
               opacity: 1;
-              
             }
-            
+            i {
+              color: $white;
+            }
           }
         }
       }
@@ -1150,7 +1233,7 @@ footer{
     background-color: #fff;
     border-radius: 50%;
     box-shadow: 0 0 6px 3px rgba(43,29,214,.6), 0 0 1px 6px rgba(43,29,214,.1);
-    @include animation(twinkle,1s,ease-in-out);
+    @include animation(1s,twinkle,ease-in-out);
   }
 }
 .deco {
@@ -1346,7 +1429,7 @@ footer{
 }
 .astronaut1 {
   top: 8%;
-  right: 12%;
+  right: 9%;
   width: 16vw;
   transform: rotate(-8deg);
   @include animation(2s, astronaut1, ease-in-out);

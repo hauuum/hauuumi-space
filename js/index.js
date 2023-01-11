@@ -1,4 +1,4 @@
-window.onload = () => {
+window.addEventListener('DOMContentLoaded', function () {
   let currentScrY;
   let wWidth;
   const s1 = document.querySelector('#s1');
@@ -10,6 +10,30 @@ window.onload = () => {
   const navMemu = document.querySelectorAll('nav > a');
   const eleH1 = document.querySelector('h1');
 
+  setTimeout(() => counter(), 1000);
+  
+  // loading animation
+  const counter = () => {
+    const progressNum = document.querySelector(".progress-num");
+    const progressBar = document.querySelector(".progress-bar");
+    const maxNum = 100;
+    let nowNum = maxNum;
+
+    const increase = setInterval(() => {
+      progressNum.querySelector('.num').textContent = Math.ceil(maxNum - nowNum);
+      progressBar.querySelector('.bar').style.width = Math.ceil(maxNum - nowNum) + '%';
+    
+      if (nowNum < 1) {
+        clearInterval(increase);
+
+        document.querySelector('#progress').classList.add('hide');
+        document.querySelector('body').classList.remove('scroll-lock'); 
+      }
+      
+      const stepNum = nowNum / 10;
+      nowNum -= stepNum;
+    }, 50);
+  }
 
   //Nav dark color
   const changeBlackNav = () => {
@@ -71,7 +95,7 @@ window.onload = () => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         mainTxtH2.style.textShadow = '-0.25em 0.25em 0 rgb(0 0 0 / 90%)';
-        mainTxtEm.style.marginLeft = '-5rem';
+        mainTxtEm.style.marginLeft = '-3rem';
         mainTxtEm.style.textShadow = '-0.25em 0.25em 0 rgb(0 0 0 / 90%)';
       }
       else {
@@ -136,11 +160,11 @@ window.onload = () => {
   });
 
   //Work video moves by scroll
-  const scrollVideo = () => { 
+  const scrollVideo = () => {
     const workScrollY = work.getBoundingClientRect().y;
     const scaleValue = 1 - workScrollY / 1000
 
-    if (workScrollY <= work.offsetHeight/2) { 
+    if (workScrollY <= work.offsetHeight / 2) {
       work.querySelector('video').style.transform = 'translate(-50%, -50%) scale(' + scaleValue + ')';
     }
     document.removeEventListener('scroll', scrollVideo);
@@ -161,7 +185,7 @@ window.onload = () => {
       workRightTxt.style.right = '-' + workTxtScollY + '%';
       workDesc.style.opacity = '1';
     }
-    else { 
+    else {
       workDesc.style.opacity = '0';
       work.querySelectorAll('span').forEach((ele) => {
         ele.style.opacity = '0';
@@ -183,17 +207,17 @@ window.onload = () => {
 
   //Twinkle Animation 
   const starWrap = document.querySelector('#star-wrap');
-  const star = () => { 
+  const star = () => {
     let num = document.documentElement.clientWidth / 4;
     starWrap.innerHTML = "";
 
-    for (var i = 0; i < num; i++) { 
+    for (var i = 0; i < num; i++) {
       const w = starWrap.clientWidth;
       const h = s1.clientHeight;
-      const randomL = Math.floor(Math.random() * w) ;
-      const randomT = Math.floor(Math.random() * h) ;
+      const randomL = Math.floor(Math.random() * w);
+      const randomT = Math.floor(Math.random() * h);
       const randomW = Math.floor(Math.random() * 6) + 3;
-      const opty = Math.random() * 10 / 10 ;
+      const opty = Math.random() * 10 / 10;
       const anim = Math.random() * 5 + 0.8;
       const span = document.createElement("span");
 
@@ -205,7 +229,7 @@ window.onload = () => {
       span.style.opacity = opty;
       span.style.animationName = "twinkle";
       span.style.animationDuration = anim + "s";
-      span.style.animationTimingFunction  = "ease-in-out";
+      span.style.animationTimingFunction = "ease-in-out";
       span.style.animationFillMode = "infinite";
       starWrap.appendChild(span);
     }
@@ -220,29 +244,29 @@ window.onload = () => {
   ];
   let inx = 0;
 
-  const randomString = () => { 
+  const randomString = () => {
     let selectString = txtgArr[inx];
     let selectStringArr = selectString.split("");
     return selectStringArr;
   }
 
-  const dynamic = (randomArr) => { 
+  const dynamic = (randomArr) => {
     if (randomArr.length > 0) {
       typingTarget.textContent += randomArr.shift();
       setTimeout(function () {
         dynamic(randomArr);
       }, 80);
     }
-    else { 
+    else {
       setTimeout(resetTying, 800);
     }
   }
 
-  const resetTying = () => { 
+  const resetTying = () => {
     typingTarget.textContent = "";
     inx++;
 
-    if (inx == txtgArr.length) { 
+    if (inx == txtgArr.length) {
       inx = 0;
     }
     dynamic(randomString());
@@ -261,7 +285,7 @@ window.onload = () => {
         ele.style.transform = `translate(${x}px, ${y}px)`;
       })
     }
-    else { 
+    else {
       document.querySelectorAll('.space-img').forEach(ele => {
         ele.style.transform = `translate(0px, 0px)`;
       });
@@ -285,5 +309,4 @@ window.onload = () => {
     scrollParallax();
     imgMove();
   });
-  
-};
+});

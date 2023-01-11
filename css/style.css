@@ -15,6 +15,67 @@
     transform: scale(1);
   }
 }
+.scroll-lock {
+  overflow-y: hidden;
+}
+
+#progress {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #fff;
+  z-index: 1000;
+  transition: top 1.6s;
+}
+#progress .progress-num {
+  font-family: "TmonMonsori";
+  font-size: 2rem;
+  font-weight: 600;
+  color: #424242;
+  margin-bottom: 1rem;
+}
+#progress .progress-num .num {
+  font-family: "TmonMonsori";
+  font-size: 2rem;
+  font-weight: 600;
+  color: #424242;
+}
+#progress .progress-bar {
+  width: 20%;
+  height: 6px;
+  background: #e1e4e8;
+  border-radius: 3px;
+  overflow: hidden;
+}
+#progress .progress-bar .bar {
+  display: block;
+  width: 1%;
+  height: 100%;
+  background: linear-gradient(90deg, #ffd33d, #ea4aaa 17%, #b34bff 34%, #01feff 51%, #ffd33d 68%, #ea4aaa 85%, #b34bff);
+  background-size: 300% 100%;
+  animation-name: progress;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes progress {
+  0% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 0;
+  }
+}
+#progress.hide {
+  top: -1000vh;
+}
+
 /* HEADER */
 header {
   position: fixed;
@@ -89,6 +150,16 @@ main .home {
   background-attachment: fixed;
   background-size: contain;
 }
+main .home::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
 @media (max-width: 767px) {
   main .home {
     background-size: cover;
@@ -104,7 +175,7 @@ main .home > div:not(.home-introduce, .home-strength) {
   height: 100vh;
 }
 main .home-main img {
-  width: 24vw;
+  width: 22vw;
 }
 @media (max-width: 1023px) {
   main .home-main img {
@@ -176,16 +247,17 @@ main .home-main .home-txt .home-next-btn a {
   font-weight: 600;
   color: #D04963;
 }
-main .home-main .home-txt .home-next-btn a span {
+main .home-main .home-txt .home-next-btn a i {
+  font-weight: 400;
   margin-left: 0.25rem;
 }
 @media (max-width: 1023px) {
-  main .home-main .home-txt .home-next-btn a span {
+  main .home-main .home-txt .home-next-btn a i {
     font-size: 1.25rem;
   }
 }
 @media (max-width: 767px) {
-  main .home-main .home-txt .home-next-btn a span {
+  main .home-main .home-txt .home-next-btn a i {
     font-size: 1rem;
   }
 }
@@ -202,7 +274,7 @@ main .home-intro .home-desc .home-typing {
   }
 }
 main .home-intro .home-desc p {
-  font-size: 2.625rem;
+  font-size: 2.5rem;
   font-weight: 600;
   text-align: center;
   color: #fff;
@@ -219,8 +291,8 @@ main .home-intro .home-desc p {
 }
 main .home-intro .home-desc p .mark {
   display: inline-block;
-  font-size: 2.625rem;
-  font-weight: 900;
+  font-size: 2.5rem;
+  font-weight: 600;
   padding: 0.047619em 0.19047619em;
   background: #FDAC4E;
   color: #010506;
@@ -228,7 +300,7 @@ main .home-intro .home-desc p .mark {
 }
 @media (max-width: 1023px) {
   main .home-intro .home-desc p .mark {
-    font-size: 2.25rem;
+    font-size: 2rem;
   }
 }
 @media (max-width: 767px) {
@@ -454,11 +526,11 @@ main .home-introduce .home-introduce-box .home-desc p {
 main .home-strength {
   height: auto;
   margin: 0 auto;
-  padding: 20rem 0;
+  padding: 16rem 0 12rem;
 }
 @media (max-width: 1023px) {
   main .home-strength {
-    padding: 16rem 0;
+    padding: 14rem 0 10rem;
   }
 }
 @media (max-width: 767px) {
@@ -490,7 +562,7 @@ main .home-strength .home-career {
 main .home-strength .home-strength-box h3,
 main .home-strength .home-career h3 {
   flex: none;
-  font-size: 3.75rem;
+  font-size: 3.25rem;
   color: #fff;
   text-align: right;
   font-weight: 600;
@@ -521,7 +593,7 @@ main .home-strength .home-career h3 {
 main .home-strength .home-strength-box h3 .mark,
 main .home-strength .home-career h3 .mark {
   position: relative;
-  font-size: 3.75rem;
+  font-size: 3.25rem;
   font-weight: 600;
   color: #fff;
   padding: 0;
@@ -924,6 +996,7 @@ main .project .prj-list .prj-desc .go-to-btn {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding: 0.5rem 0.5rem 0.5rem 1.25rem;
   box-sizing: border-box;
   color: #424242;
@@ -936,13 +1009,24 @@ main .project .prj-list .prj-desc .go-to-btn {
 }
 main .project .prj-list .prj-desc .go-to-btn span {
   position: relative;
-}
-main .project .prj-list .prj-desc .go-to-btn span.btn-txt {
   font-size: 0.75rem;
   font-weight: 600;
 }
 @media (max-width: 1023px) {
-  main .project .prj-list .prj-desc .go-to-btn span.btn-txt {
+  main .project .prj-list .prj-desc .go-to-btn span {
+    color: #fff;
+  }
+}
+main .project .prj-list .prj-desc .go-to-btn span i {
+  position: relative;
+  z-index: 1;
+  font-size: 0.75rem;
+  color: #424242;
+  margin-left: 0.25rem;
+  margin-top: 0.125rem;
+}
+@media (max-width: 1023px) {
+  main .project .prj-list .prj-desc .go-to-btn span i {
     color: #fff;
   }
 }
@@ -973,6 +1057,7 @@ main .project .prj-list .prj-desc .go-to-btn::before {
 }
 main .project .prj-list .prj-desc .go-to-btn:hover, main .project .prj-list .prj-desc .go-to-btn:focus {
   color: #fff;
+  padding: 0.5rem 1.25rem;
 }
 main .project .prj-list .prj-desc .go-to-btn:hover::before, main .project .prj-list .prj-desc .go-to-btn:focus::before {
   width: 100%;
@@ -980,6 +1065,9 @@ main .project .prj-list .prj-desc .go-to-btn:hover::before, main .project .prj-l
   border-radius: 4px;
   background: #d04963;
   opacity: 1;
+}
+main .project .prj-list .prj-desc .go-to-btn:hover i, main .project .prj-list .prj-desc .go-to-btn:focus i {
+  color: #fff;
 }
 main .project .prj-list:hover .prj-img img, main .project .prj-list:focus .prj-img img {
   filter: blur(0) brightness(1);
@@ -1346,8 +1434,8 @@ footer p {
   background-color: #fff;
   border-radius: 50%;
   box-shadow: 0 0 6px 3px rgba(43, 29, 214, 0.6), 0 0 1px 6px rgba(43, 29, 214, 0.1);
-  animation-name: 1s;
-  animation-duration: twinkle;
+  animation-name: twinkle;
+  animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
@@ -1607,7 +1695,7 @@ footer p {
 
 .astronaut1 {
   top: 8%;
-  right: 12%;
+  right: 9%;
   width: 16vw;
   transform: rotate(-8deg);
   animation-name: astronaut1;
