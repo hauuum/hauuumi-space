@@ -139,9 +139,9 @@ main {
       height: 100%;
       background: rgba(0,0,0,0.4);
     }
-    @include mobile{
-      background-size: cover;
-    }
+    // @include mobile{
+    //   background-size: cover;
+    // }
     > div {
       display: flex;
       align-items: center;
@@ -1215,6 +1215,7 @@ footer{
   position: relative;
   background: #0d1213;
   padding: .75rem 0;
+  z-index: 2;
   @include mobile {
     padding: .5rem 0;
   }
