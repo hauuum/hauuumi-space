@@ -95,9 +95,6 @@ select {
 	font-size: 0.875rem;
 	font-family: 'Gowun Dodum', sans-serif;
 }
-img {
-	transform: translateZ(0);
-}
 a {
 	font-size: inherit;
 	display: block;

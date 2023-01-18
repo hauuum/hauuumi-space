@@ -37,7 +37,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   //Nav dark color
   const changeBlackNav = () => {
-    eleHeader.style.backgroundColor = '#0d1213';
+    eleHeader.style.backgroundColor = '#222e3c';
     eleHeader.style.borderBottom = '#000000';
     eleNav.style.color = '#fff';
     eleH1.style.color = '#fff';
@@ -94,9 +94,9 @@ window.addEventListener('DOMContentLoaded', function () {
     
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        mainTxtH2.style.textShadow = '-0.25em 0.25em 0 rgb(0 0 0 / 90%)';
+        mainTxtH2.style.textShadow = '-0.25em 0.25em 0 rgba(11,15,19,0.86)';
         mainTxtEm.style.marginLeft = '-3rem';
-        mainTxtEm.style.textShadow = '-0.25em 0.25em 0 rgb(0 0 0 / 90%)';
+        mainTxtEm.style.textShadow = '-0.25em 0.25em 0 rgba(11,15,19,0.86)';
       }
       else {
         mainTxtH2.style.textShadow = 'none';
@@ -111,7 +111,7 @@ window.addEventListener('DOMContentLoaded', function () {
   //Intro text moves by scroll
   const scrollIntroTxt = () => {
     const intro = s1.querySelector('.home-introduce');
-    const introScrollY = Math.round(intro.getBoundingClientRect().y / 10);
+    const introScrollY = Math.round(intro.getBoundingClientRect().y / 7);
     const introLeftTxt = s1.querySelector('.__left');
     const introRightTxt = s1.querySelector('.__right');
 
@@ -206,12 +206,12 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 
   //Twinkle Animation 
-  const starWrap = document.querySelector('#star-wrap');
+  const starWrap = s1.querySelector('#star-wrap');
   const star = () => {
     let num = document.documentElement.clientWidth / 4;
     starWrap.innerHTML = "";
 
-    for (var i = 0; i < num; i++) {
+    for (let i = 0; i < num; i++) {
       const w = starWrap.clientWidth;
       const h = s1.clientHeight;
       const randomL = Math.floor(Math.random() * w);
@@ -232,6 +232,33 @@ window.addEventListener('DOMContentLoaded', function () {
       span.style.animationTimingFunction = "ease-in-out";
       span.style.animationFillMode = "infinite";
       starWrap.appendChild(span);
+    }
+  }
+
+  //Shooting star Animation 
+  const shootingStarWrap = s1.querySelector('#shootingStar-wrap');
+  const shootingStar = () => {
+    let num = document.documentElement.clientWidth / 80;
+    shootingStarWrap.innerHTML = "";
+
+    for (let i = 0; i < num; i++) {
+      const w = shootingStarWrap.clientWidth;
+      const h = shootingStarWrap.clientHeight;
+      const randomL = Math.floor(Math.random() * w);
+      const randomT = Math.floor(Math.random() * h/2);
+      const randomW = Math.floor(Math.random() * 6) + 5;
+      const anim = Math.random() * 5 + 2;
+      const span = document.createElement("span");
+
+      span.style.left = randomL + 'px';
+      span.style.top = randomT + 'px';
+      span.style.width = randomW + 'px';
+      span.style.height = randomW + 'px';
+      span.style.animationName = "shootingStar";
+      span.style.animationDuration = anim + "s";
+      span.style.animationTimingFunction = "ease-in-out";
+      span.style.animationFillMode = "infinite";
+      shootingStarWrap.appendChild(span);
     }
   }
 
@@ -272,40 +299,21 @@ window.addEventListener('DOMContentLoaded', function () {
     dynamic(randomString());
   }
 
-  //Move image Animation
-  const imgMove = (e) => {
-    wWidth = window.outerWidth;
-    
-    if (wWidth >= 768) {
-      document.querySelectorAll('.space-img').forEach(ele => {
-        const speed = ele.getAttribute('data-speed');
-        const x = (window.innerWidth - e.clientX * speed) / 100;
-        const y = (window.innerWidth - e.clientY * speed) / 100;
-  
-        ele.style.transform = `translate(${x}px, ${y}px)`;
-      })
-    }
-    else {
-      document.querySelectorAll('.space-img').forEach(ele => {
-        ele.style.transform = `translate(0px, 0px)`;
-      });
-    }
-  }
-  
   //Default
   history.scrollRestoration = "manual";
+  star();
+  shootingStar();
   scrollNav();
   scrollParallax();
-  star();
   dynamic(randomString());
   
   document.addEventListener('scroll', scrollParallax);
   document.addEventListener('touchMove', scrollParallax);
   document.addEventListener('touchStart', scrollParallax);
   document.addEventListener('touchEnd', scrollParallax);
-  document.addEventListener('mousemove', imgMove);
   document.addEventListener('resize', () => {
     star();
+    shootingStar();
     scrollParallax();
     imgMove();
   });
