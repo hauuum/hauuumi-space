@@ -151,7 +151,6 @@ main {
 }
 main .page {
   position: relative;
-  z-index: 1;
   background: #fff;
 }
 main .home {
@@ -178,6 +177,9 @@ main .home > div {
 }
 main .home > div:not(.home-introduce, .home-strength) {
   height: 100vh;
+}
+main .home-main {
+  z-index: 3;
 }
 main .home-main img {
   width: 20vw;
@@ -331,7 +333,7 @@ main .home-intro .home-desc #typing-txt::before {
 }
 main .home-introduce {
   padding: 10rem 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 @media (max-width: 1023px) {
   main .home-introduce {
@@ -343,7 +345,10 @@ main .home-introduce {
     padding: 5rem 0;
   }
 }
-main .home-introduce .scroll-txt {
+main .home-introduce .container {
+  will-change: transform;
+}
+main .home-introduce .container .scroll-txt {
   position: relative;
   font-family: "TmonMonsori";
   font-size: 5rem;
@@ -352,46 +357,49 @@ main .home-introduce .scroll-txt {
   color: #D04963;
   white-space: nowrap;
   color: #e92e69;
-  transition: 0.4s;
 }
 @media (max-width: 1023px) {
-  main .home-introduce .scroll-txt {
+  main .home-introduce .container .scroll-txt {
     font-size: 4rem;
   }
 }
 @media (max-width: 767px) {
-  main .home-introduce .scroll-txt {
+  main .home-introduce .container .scroll-txt {
     font-size: 2.5rem;
   }
 }
-main .home-introduce .scroll-txt::before, main .home-introduce .scroll-txt::after {
+main .home-introduce .container .scroll-txt::before, main .home-introduce .container .scroll-txt::after {
   display: block;
   position: absolute;
   color: transparent;
   -webkit-text-stroke: 1px #e92e69;
   z-index: 3;
-  transition: 0.4s;
 }
-main .home-introduce .__left {
+@media (max-width: 767px) {
+  main .home-introduce .container .scroll-txt::before, main .home-introduce .container .scroll-txt::after {
+    -webkit-text-stroke: 0.6px #e92e69;
+  }
+}
+main .home-introduce .container .__left {
   top: 0;
   left: -60%;
   margin-bottom: -0.5em;
 }
-main .home-introduce .__left::before {
-  content: '"성공을 얻는데 중요한 열쇠는 자신감이고';
+main .home-introduce .container .__left::before {
+  content: '"디자인을 이해하고 센스 넘치는 퍼블리셔"';
 }
-main .home-introduce .__right {
+main .home-introduce .container .__right {
   bottom: -0.75rem;
   right: -70%;
   margin-top: -0.5em;
 }
-main .home-introduce .__right::before {
-  content: '자신감을 얻는데 중요한 열쇠는 준비성이다"';
+main .home-introduce .container .__right::before {
+  content: '"개발에 관심이 많아 잘 통하는 퍼블리셔"';
 }
-main .home-introduce .row {
+main .home-introduce .container .row {
   position: relative;
 }
-main .home-introduce .row::before {
+main .home-introduce .container .row::before {
   content: "";
   display: block;
   width: 8%;
@@ -403,7 +411,7 @@ main .home-introduce .row::before {
   transform: skew(-12deg);
   z-index: 2;
 }
-main .home-introduce .row::after {
+main .home-introduce .container .row::after {
   content: "";
   display: block;
   width: 16%;
@@ -415,7 +423,7 @@ main .home-introduce .row::after {
   transform: skew(-12deg);
   z-index: 2;
 }
-main .home-introduce .row .home-introduce-box {
+main .home-introduce .container .row .home-introduce-box {
   position: relative;
   display: flex;
   align-items: center;
@@ -423,12 +431,12 @@ main .home-introduce .row .home-introduce-box {
   margin: 0 auto;
 }
 @media (max-width: 1023px) {
-  main .home-introduce .row .home-introduce-box {
+  main .home-introduce .container .row .home-introduce-box {
     width: 100%;
   }
 }
 @media (max-width: 767px) {
-  main .home-introduce .row .home-introduce-box {
+  main .home-introduce .container .row .home-introduce-box {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -437,7 +445,7 @@ main .home-introduce .row .home-introduce-box {
     width: 100%;
   }
 }
-main .home-introduce .row .home-introduce-box::before {
+main .home-introduce .container .row .home-introduce-box::before {
   content: "";
   display: block;
   position: absolute;
@@ -450,7 +458,7 @@ main .home-introduce .row .home-introduce-box::before {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
   background: #fff;
 }
-main .home-introduce .row .home-introduce-box::after {
+main .home-introduce .container .row .home-introduce-box::after {
   content: "";
   display: block;
   width: 3%;
@@ -463,26 +471,26 @@ main .home-introduce .row .home-introduce-box::after {
   z-index: 2;
 }
 @media (max-width: 1023px) {
-  main .home-introduce .row .home-introduce-box::after {
+  main .home-introduce .container .row .home-introduce-box::after {
     left: -6%;
   }
 }
-main .home-introduce .row .home-introduce-box img {
+main .home-introduce .container .row .home-introduce-box img {
   width: 28%;
   z-index: 5;
 }
 @media (max-width: 1023px) {
-  main .home-introduce .row .home-introduce-box img {
+  main .home-introduce .container .row .home-introduce-box img {
     width: 30%;
   }
 }
 @media (max-width: 767px) {
-  main .home-introduce .row .home-introduce-box img {
+  main .home-introduce .container .row .home-introduce-box img {
     position: relative;
     width: 50%;
   }
 }
-main .home-introduce .row .home-introduce-box .home-desc {
+main .home-introduce .container .row .home-introduce-box .home-desc {
   position: relative;
   width: 100%;
   padding: 7% 0;
@@ -491,48 +499,48 @@ main .home-introduce .row .home-introduce-box .home-desc {
   z-index: 5;
 }
 @media (max-width: 1023px) {
-  main .home-introduce .row .home-introduce-box .home-desc {
+  main .home-introduce .container .row .home-introduce-box .home-desc {
     padding: 5% 0;
   }
 }
 @media (max-width: 767px) {
-  main .home-introduce .row .home-introduce-box .home-desc {
+  main .home-introduce .container .row .home-introduce-box .home-desc {
     padding: 0;
     margin-left: 0;
   }
 }
 @media (max-width: 767px) {
-  main .home-introduce .row .home-introduce-box .home-desc ul {
+  main .home-introduce .container .row .home-introduce-box .home-desc ul {
     text-align: center;
   }
 }
-main .home-introduce .row .home-introduce-box .home-desc ul li {
+main .home-introduce .container .row .home-introduce-box .home-desc ul li {
   font-size: 0.875rem;
   font-weight: 400;
   padding: 0.125em 0;
 }
 @media (max-width: 1023px) {
-  main .home-introduce .row .home-introduce-box .home-desc ul li {
+  main .home-introduce .container .row .home-introduce-box .home-desc ul li {
     font-size: 0.75rem;
   }
 }
 @media (max-width: 767px) {
-  main .home-introduce .row .home-introduce-box .home-desc ul li {
+  main .home-introduce .container .row .home-introduce-box .home-desc ul li {
     font-size: 0.75rem;
   }
 }
-main .home-introduce .row .home-introduce-box .home-desc p {
+main .home-introduce .container .row .home-introduce-box .home-desc p {
   font-weight: 600;
   margin-top: 1.875rem;
   word-break: keep-all;
 }
 @media (max-width: 1023px) {
-  main .home-introduce .row .home-introduce-box .home-desc p {
+  main .home-introduce .container .row .home-introduce-box .home-desc p {
     font-size: 0.875rem;
   }
 }
 @media (max-width: 767px) {
-  main .home-introduce .row .home-introduce-box .home-desc p {
+  main .home-introduce .container .row .home-introduce-box .home-desc p {
     width: 94%;
     font-size: 0.875rem;
     margin: 1.25rem auto 0;
@@ -781,6 +789,7 @@ main .home-strength .home-career .career-item .work-info p {
 }
 main .project {
   padding: 10rem 0;
+  z-index: 2;
 }
 @media (max-width: 1023px) {
   main .project {
@@ -903,17 +912,20 @@ main .project .prj-list .prj-img {
 main .project .prj-list .prj-img img {
   position: relative;
   width: 100%;
-  filter: blur(1px) brightness(0.6);
+  filter: blur(1.5px) brightness(0.67);
   transform: scale(1.6);
-  transition: 0.6s;
+  transition: transform 0.6s;
   z-index: 1;
-  cursor: pointer;
 }
 @media (max-width: 767px) {
   main .project .prj-list .prj-img img {
     filter: blur(0) brightness(1);
     transform: scale(1.2);
   }
+}
+main .project .prj-list .prj-img img:hover, main .project .prj-list .prj-img img:focus {
+  filter: blur(0) brightness(1);
+  transform: scale(1.2);
 }
 main .project .prj-list .prj-img::before {
   content: "";
@@ -1028,22 +1040,18 @@ main .project .prj-list .prj-desc .go-to-btn span {
   font-size: 0.75rem;
   font-weight: 600;
 }
-@media (max-width: 1023px) {
-  main .project .prj-list .prj-desc .go-to-btn span {
-    color: #fff;
-  }
-}
 main .project .prj-list .prj-desc .go-to-btn span i {
   position: relative;
   z-index: 1;
   font-size: 0.75rem;
-  color: #424242;
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
   margin-top: 0.125rem;
+  color: #fff;
+  opacity: 0;
 }
 @media (max-width: 1023px) {
   main .project .prj-list .prj-desc .go-to-btn span i {
-    color: #fff;
+    opacity: 1;
   }
 }
 main .project .prj-list .prj-desc .go-to-btn::before {
@@ -1058,7 +1066,7 @@ main .project .prj-list .prj-desc .go-to-btn::before {
   height: 2.142857em;
   border-radius: 50%;
   background: #d04963;
-  opacity: 0.4;
+  opacity: 0.3;
   transition: 0.2s;
 }
 @media (max-width: 1023px) {
@@ -1083,11 +1091,7 @@ main .project .prj-list .prj-desc .go-to-btn:hover::before, main .project .prj-l
   opacity: 1;
 }
 main .project .prj-list .prj-desc .go-to-btn:hover i, main .project .prj-list .prj-desc .go-to-btn:focus i {
-  color: #fff;
-}
-main .project .prj-list:hover .prj-img img, main .project .prj-list:focus .prj-img img {
-  filter: blur(0) brightness(1);
-  transform: scale(1.2);
+  opacity: 1;
 }
 main .work {
   position: sticky;
@@ -1105,6 +1109,7 @@ main .work {
 main .work .work-bg {
   position: relative;
   height: 100vh;
+  will-change: transform;
 }
 main .work .work-bg video {
   position: absolute;
@@ -1165,7 +1170,6 @@ main .work .work-txt span {
   color: #fff;
   white-space: nowrap;
   opacity: 0;
-  transition: 0.4s;
 }
 @media (max-width: 1023px) {
   main .work .work-txt span {
@@ -1185,6 +1189,7 @@ main .work .work-txt span.__right {
 }
 main .contact {
   background: #fff;
+  z-index: 2;
   padding: 5rem 0;
 }
 @media (max-width: 1023px) {
@@ -1308,7 +1313,6 @@ main .contact .imgs-box {
   column-width: 15vw;
   column-gap: 0.125rem;
   margin: 6.25rem auto 0;
-  perspective: 600px;
 }
 @media (max-width: 1023px) {
   main .contact .imgs-box {
@@ -1323,7 +1327,8 @@ main .contact .imgs-box {
   }
 }
 main .contact .imgs-box .space-img {
-  perspective: 1000px;
+  perspective: 600px;
+  will-change: transform;
   cursor: pointer;
 }
 @media (max-width: 767px) {
@@ -1514,7 +1519,7 @@ footer p {
 }
 @media (max-width: 767px) {
   .meteor1 {
-    top: 1.4%;
+    top: 0.7%;
     width: 8.4vw;
   }
 }

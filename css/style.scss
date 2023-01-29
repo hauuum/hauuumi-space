@@ -119,7 +119,6 @@ header {
 main {
   .page {
     position: relative;
-    z-index: 1;
     background: $white;
   }
   /* HOME */
@@ -148,6 +147,7 @@ main {
       }
     }
     &-main {
+      z-index: 3;
       img{
         width: 20vw;
         @include tablet{
@@ -277,178 +277,184 @@ main {
     }
     &-introduce {
       padding: 10rem 0;
-      overflow-x: hidden;
+      overflow: hidden;
       @include tablet{
         padding: 7.5rem 0;
       }
       @include mobile{
         padding: 5rem 0;
       }
-      .scroll-txt {
-        position: relative;
-        font-family: "TmonMonsori";
-        font-size: 5rem;
-        font-weight: 900;
-        line-height: 1;
-        color: $pink;
-        white-space: nowrap;
-        color: #e92e69;
-        transition: .4s;
-        @include tablet{
-          font-size: 4rem;
-        }
-        @include mobile{
-          font-size: 2.5rem;
-        }
-        &::before,
-        &::after{
-          display: block;
-          position: absolute;
-          color: transparent;
-          -webkit-text-stroke: 1px #e92e69;
-          z-index: 3;
-          transition: .4s;
-        }
-      }
-      .__left{
-        top: 0;
-        left: -60%;
-        margin-bottom: -.5em; 
-        &::before {
-          content: '"성공을 얻는데 중요한 열쇠는 자신감이고';
-        }
-      }
-      .__right{
-        bottom: -.75rem;
-        right: -70%;
-        margin-top: -.5em;
-        &::before {
-          content: '자신감을 얻는데 중요한 열쇠는 준비성이다"';
-        }
-      }
-      .row {
-        position: relative;
-        &::before {
-          content: '';
-          display: block;
-          width: 8%;
-          height: 100%;
-          position: absolute;
-          left: -16%;
-          top: 0;
-          background: rgba(243, 238, 238, 0.5);
-          transform: skew(-12deg);
-          z-index: 2; 
-        }
-        &::after {
-          content: '';
-          display: block;
-          width: 16%;
-          height: 100%;
-          position: absolute;
-          right: -19%;
-          top: 0;
-          background: rgba(243, 238, 238, 0.5);
-          transform: skew(-12deg);
-          z-index: 2;
-        }
-        .home-introduce-box {
+      .container {
+        will-change: transform;
+      
+        .scroll-txt {
           position: relative;
-          display: flex;
-          align-items: center;
-          width: 82%;
-          margin: 0 auto;
+          font-family: "TmonMonsori";
+          font-size: 5rem;
+          font-weight: 900;
+          line-height: 1;
+          color: $pink;
+          white-space: nowrap;
+          color: #e92e69;
           @include tablet{
-            width: 100%;
-          }     
+            font-size: 4rem;
+          }
           @include mobile{
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 1.25rem 0;
-            box-sizing: border-box;
-            width: 100%;
-          }  
-          &::before{
-            content: '';
+            font-size: 2.5rem;
+          }
+          &::before,
+          &::after{
             display: block;
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100vw;
+            color: transparent;
+            -webkit-text-stroke: 1px #e92e69;
+            z-index: 3;
+            @include mobile{
+              -webkit-text-stroke: 0.6px #e92e69;
+            }
+          }
+        }
+        .__left{
+          top: 0;
+          left: -60%;
+          margin-bottom: -.5em; 
+          &::before {
+            content: '"디자인을 이해하고 센스 넘치는 퍼블리셔"';
+          }
+        }
+        .__right{
+          bottom: -.75rem;
+          right: -70%;
+          margin-top: -.5em;
+          &::before {
+            content: '"개발에 관심이 많아 잘 통하는 퍼블리셔"';
+          }
+        }
+      
+        .row {
+          position: relative;
+          &::before {
+            content: '';
+            display: block;
+            width: 8%;
             height: 100%;
-            z-index: 1;
-            box-shadow: 0 0 5px rgba(0,0,0,0.6);
-            background: #fff;
+            position: absolute;
+            left: -16%;
+            top: 0;
+            background: rgba(243, 238, 238, 0.5);
+            transform: skew(-12deg);
+            z-index: 2; 
           }
           &::after {
             content: '';
             display: block;
-            width: 3%;
+            width: 16%;
             height: 100%;
             position: absolute;
-            left: -17%;
+            right: -19%;
             top: 0;
             background: rgba(243, 238, 238, 0.5);
             transform: skew(-12deg);
             z-index: 2;
-            @include tablet{
-              left: -6%;
-            } 
           }
-          img {
-            width: 28%;
-            z-index: 5;
-            @include tablet{
-              width: 30%;
-            }
-            @include mobile{
-              position: relative;
-              width: 50%;
-            }
-          }
-          .home-desc {
+          .home-introduce-box {
             position: relative;
-            width: 100%;
-            padding: 7% 0;
-            box-sizing: border-box;
-            margin-left: 2.5rem;          
-            z-index: 5;
+            display: flex;
+            align-items: center;
+            width: 82%;
+            margin: 0 auto;
             @include tablet{
-              padding: 5% 0;
-            }
+              width: 100%;
+            }     
             @include mobile{
-              padding: 0;
-              margin-left: 0;    
+              display: flex;
+              justify-content: center;
+              flex-wrap: wrap;
+              padding: 1.25rem 0;
+              box-sizing: border-box;
+              width: 100%;
+            }  
+            &::before{
+              content: '';
+              display: block;
+              position: absolute;
+              top: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 100vw;
+              height: 100%;
+              z-index: 1;
+              box-shadow: 0 0 5px rgba(0,0,0,0.6);
+              background: #fff;
             }
-            ul{
-              @include mobile{
-                text-align: center;
+            &::after {
+              content: '';
+              display: block;
+              width: 3%;
+              height: 100%;
+              position: absolute;
+              left: -17%;
+              top: 0;
+              background: rgba(243, 238, 238, 0.5);
+              transform: skew(-12deg);
+              z-index: 2;
+              @include tablet{
+                left: -6%;
+              } 
+            }
+            img {
+              width: 28%;
+              z-index: 5;
+              @include tablet{
+                width: 30%;
               }
-              li {
-                font-size: $font14;
-                font-weight: $weight400;
-                padding: .125em 0;
+              @include mobile{
+                position: relative;
+                width: 50%;
+              }
+            }
+            .home-desc {
+              position: relative;
+              width: 100%;
+              padding: 7% 0;
+              box-sizing: border-box;
+              margin-left: 2.5rem;          
+              z-index: 5;
+              @include tablet{
+                padding: 5% 0;
+              }
+              @include mobile{
+                padding: 0;
+                margin-left: 0;    
+              }
+              ul{
+                @include mobile{
+                  text-align: center;
+                }
+                li {
+                  font-size: $font14;
+                  font-weight: $weight400;
+                  padding: .125em 0;
+                  @include tablet{
+                    font-size: $font12;
+                  }
+                  @include mobile{
+                    font-size: $font12;
+                  }
+                }
+              }
+              p {
+                font-weight: $weight600;
+                margin-top: 1.875rem;
+                word-break: keep-all;
                 @include tablet{
-                  font-size: $font12;
+                  font-size: $font14;
                 }
                 @include mobile{
-                  font-size: $font12;
+                  width: 94%;
+                  font-size: $font14;
+                  margin: 1.25rem auto 0;
                 }
-              }
-            }
-            p {
-              font-weight: $weight600;
-              margin-top: 1.875rem;
-              word-break: keep-all;
-              @include tablet{
-                font-size: $font14;
-              }
-              @include mobile{
-                width: 94%;
-                font-size: $font14;
-                margin: 1.25rem auto 0;
               }
             }
           }
@@ -657,6 +663,7 @@ main {
   }
   .project {
     padding: 10rem 0;
+    z-index: 2;
     @include tablet{
       padding: 7.5rem 0;
     }
@@ -760,12 +767,16 @@ main {
         img {
           position: relative;
           width: 100%;
-          filter: blur(1px) brightness(.6);
+          filter: blur(1.5px) brightness(.67);
           transform: scale(1.6);
-          transition: .6s;
+          transition: transform .6s;
           z-index: 1;
-          cursor: pointer;
           @include mobile{
+            filter: blur(0) brightness(1);
+            transform: scale(1.2);
+          }
+          &:hover,
+          &:focus{
             filter: blur(0) brightness(1);
             transform: scale(1.2);
           }
@@ -859,18 +870,16 @@ main {
             position: relative;
             font-size: $font12;
             font-weight: 600;
-            @include tablet{
-              color: $white;
-            }
             i{
               position: relative;
               z-index: 1;
               font-size: $font12;
-              color: $black42; 
-              margin-left: 0.25rem;
+              margin-left: 0.5rem;
               margin-top: 0.125rem;
+              color: $white;
+              opacity: 0;
               @include tablet{
-                color: $white;
+                opacity: 1;
               } 
             }
           }
@@ -886,7 +895,7 @@ main {
             height: 2.142857em;
             border-radius: 50%;
             background: #d04963;
-            opacity: .4;
+            opacity: .3;
             transition: .2s;
             @include tablet{
               display: inline-block;
@@ -909,17 +918,8 @@ main {
               opacity: 1;
             }
             i {
-              color: $white;
+              opacity: 1;
             }
-          }
-        }
-      }
-      &:hover,
-      &:focus {
-        .prj-img {
-          img{
-            filter: blur(0) brightness(1);
-            transform: scale(1.2);
           }
         }
       }
@@ -938,6 +938,7 @@ main {
     .work-bg {
       position: relative;
       height: 100vh;
+      will-change: transform;
       video {
         position: absolute;
         left: 50%;
@@ -991,7 +992,6 @@ main {
         color: $white;
         white-space: nowrap;
         opacity: 0;
-        transition:  0.4s;
         @include tablet{
           font-size: 5rem;
         }
@@ -1009,6 +1009,7 @@ main {
   }
   .contact {
     background: #fff;
+    z-index: 2;
     padding: 5rem 0;
     @include tablet{
       padding: 3rem 0;
@@ -1112,7 +1113,6 @@ main {
       column-width: 15vw;
       column-gap: .125rem;
       margin: 6.25rem auto 0;
-      perspective: 600px;
       @include tablet{
         margin: 4rem auto 0;
         column-width: 18vw;
@@ -1122,7 +1122,8 @@ main {
         column-width: 34vw;
       }
       .space-img {
-        perspective: 1000px;
+        perspective: 600px;
+        will-change: transform;
         cursor: pointer;
         @include mobile{
           border-radius: 6px;
@@ -1300,7 +1301,7 @@ footer{
     width: 5.2vw;
   }
   @include mobile{
-    top: 1.4%;
+    top: 0.7%;
     width: 8.4vw;
   }
 }

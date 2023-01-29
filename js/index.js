@@ -94,9 +94,9 @@ window.addEventListener('DOMContentLoaded', function () {
     
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        mainTxtH2.style.textShadow = '-0.25em 0.25em 0 rgba(11,15,19,0.86)';
+        mainTxtH2.style.textShadow = '-0.25em 0.25em 0 rgba(11,15,19,0.7)';
         mainTxtEm.style.marginLeft = '-3rem';
-        mainTxtEm.style.textShadow = '-0.25em 0.25em 0 rgba(11,15,19,0.86)';
+        mainTxtEm.style.textShadow = '-0.25em 0.25em 0 rgba(11,15,19,0.7)';
       }
       else {
         mainTxtH2.style.textShadow = 'none';
@@ -266,7 +266,7 @@ window.addEventListener('DOMContentLoaded', function () {
   const typingTarget = document.querySelector('#typing-txt');
   let txtgArr = [
     "변화를 즐기는",
-    "배움의 욕심이 끝이 없는",
+    "배움의 욕심이 많은",
     "하고자하는 일은 기필코 해내는"
   ];
   let inx = 0;
