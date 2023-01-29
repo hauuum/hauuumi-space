@@ -1328,7 +1328,6 @@ main .contact .imgs-box {
 }
 main .contact .imgs-box .space-img {
   perspective: 600px;
-  will-change: transform;
   cursor: pointer;
 }
 @media (max-width: 767px) {

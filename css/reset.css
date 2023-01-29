@@ -98,7 +98,7 @@ a {
 	font-size: inherit;
 	display: block;
 	text-decoration: none;
-	vertical-align: baseline;
+	/* vertical-align: baseline; */
 	background: transparent;
 	-webkit-tap-highlight-color: inherit;
 	color: inherit;

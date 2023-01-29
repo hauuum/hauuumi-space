@@ -286,7 +286,6 @@ main {
       }
       .container {
         will-change: transform;
-      
         .scroll-txt {
           position: relative;
           font-family: "TmonMonsori";
@@ -1123,7 +1122,6 @@ main {
       }
       .space-img {
         perspective: 600px;
-        will-change: transform;
         cursor: pointer;
         @include mobile{
           border-radius: 6px;
