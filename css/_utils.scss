@@ -39,7 +39,6 @@ $desktop: 1024px;
 @mixin animation ($duration, $name, $timing) {
   animation-name: $name;
   animation-duration: $duration;
-  animation-iteration-count: infinite;
   animation-timing-function: $timing;
 }
 

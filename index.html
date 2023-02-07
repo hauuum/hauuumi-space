@@ -29,6 +29,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <!-- SCRIPT -->
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/index.js"></script>
   </head>
@@ -103,7 +104,7 @@
         </div>
         <div class="home-introduce">
           <div class="container">
-            <p class="scroll-txt __left">"디자인을 이해하고 센스 넘치는 퍼블리셔"</p>
+            <p class="scroll-txt __left">"디자인을 이해하고 센스있는 퍼블리셔"</p>
             <div class="row">
               <div class="home-introduce-box">
                 <img src="./assets/imgs/me.png" alt="개인 사진" />
@@ -154,10 +155,6 @@
                   <p>
                     평소 프론트앤드 개발에 관심이 많아 자바스크립트를 심도있게 공부하고 최근에는 리액트를 배우고 있습니다.
                   </p>
-                  <p>
-                    어떤 일이든 주어진 일만 하기보단 항상 큰 숲을 생각하는
-                    편이라 비상시 위기대처 능력이 좋다고 자신합니다.
-                  </p>
                 </div>
               </div>
               <div class="home-strength-list home-career">
@@ -172,11 +169,11 @@
                 </h3>
                 <div class="home-career-list">
                   <div class="career-item">
-                    <div class="cmpny-name">숱사자 <span>사원</span></div>
+                    <div class="cmpny-name">숱사자 <span>개발팀 사원</span></div>
                     <div class="work-info">
                       <span class="date">2022.04 ~ 2022.06</span>
                       <p class="desc">
-                        위치기반 포켓몬카드 거래 교환소 웹 앱 기획 및 퍼블리싱
+                        위치 기반 포켓몬카드 거래 교환소 웹 앱 기획 및 퍼블리싱
                       </p>
                     </div>
                   </div>
@@ -187,7 +184,7 @@
                     <div class="work-info">
                       <span class="date">2020.04 ~ 2022.01</span>
                       <p class="desc">
-                        건축 전문 플랫폼 반응형 웹 퍼블리싱<span class="txt-br"></span> 구글 애널리틱스 기반의
+                        건축 플랫폼 반응형 웹 퍼블리싱<span class="txt-br"></span> 구글 애널리틱스 기반의
                         대시보드 및 admin 관리자 페이지 퍼블리싱<span
                           class="txt-br"
                         ></span>
@@ -210,7 +207,7 @@
                     <div class="work-info">
                       <span class="date">2018.12 ~ 2019.08</span>
                       <p class="desc">
-                        카페24 기반의 반려동물 용품 이커머스 반응형 웹 퍼블리싱
+                        카페24 기반 반려동물 용품 온라인몰 반응형 퍼블리싱
                       </p>
                       <div class="dvlp">
                         <span>개발환경</span>
@@ -228,7 +225,7 @@
                     <div class="work-info">
                       <span class="date">2018.05 ~ 2018.08</span>
                       <p class="desc">
-                        기존 플래시로 구축된 오래된 웹사이트에서 아임웹 기반 온라인몰 리뉴얼 퍼블리싱
+                        아임웹 기반 소형 가전 온라인몰 반응형 리뉴얼 퍼블리싱
                       </p>
                       <div class="dvlp">
                         <span>개발환경</span>
@@ -279,27 +276,38 @@
           <div class="row">
             <h2><span>Project</span></h2>
             <div class="prj-list-wrap">
+              <div class="prj-list prj-right">
+                <div class="prj-desc">
+                  <h3>MAKER PUZZLE ADMIN</h3>
+                  <p>어드민 관리자 화면 구축</p>
+                  <ul>
+                    <li>- 구글 애널리틱스 기반 대시보드 및 admin 관리자 화면 제작</li>
+                    <li>- 퍼블리싱 100% 참여 (약 7일)</li>
+                    <li>- html, css, javascript</li>
+                  </ul>
+                </div>
+                <div class="prj-img">
+                  <img
+                    src="./assets/imgs/prj-img1.jpg"
+                    alt="메이커퍼즐 어드민 관리자 페이지"
+                  />
+                </div>
+              </div>
               <div class="prj-list prj-left">
                 <div class="prj-img">
                   <img
-                    src="./assets/imgs/project1.PNG"
+                    src="./assets/imgs/prj-img2.jpg"
                     alt="메이커퍼즐 프로젝트"
                   />
                 </div>
                 <div class="prj-desc">
                   <h3>MAKER PUZZLE</h3>
-                  <p>
-                    국내 유명 건축 프로젝트에 실무자가 해당 이미지에 직접 마크를
-                    찍어 참여 기여도를 입력할 수 있습니다.
-                    <span class="txt-br"></span> 또 에디터 기능이 있어 건축 분야
-                    설계사, 디자이너들의 포트폴리오 업로드가 가능합니다.<span
-                      class="txt-br"
-                    ></span>
-                    마지막으로 유저간 실시간 채팅이 가능하여 개인/기업간의 사업
-                    제안이나 채용이 가능한 플랫폼입니다.
+                  <p>건축 종사자들을 위한 온라인 플랫폼 구축<br />
+                  대표적인 기능으로는 프로젝트 內 이미지에 마커를 등록하여 참여 여부를 체크할 수 있고, 에디터 기능을 활용한 포트폴리오 업로드가 있습니다.
+                  또 유저간 팔로우나 실시간 채팅이 가능합니다.
                   </p>
                   <ul>
-                    <li>- 반응형 웹사이트/퍼블리싱 100% 참여 (약 한달)</li>
+                    <li>- 반응형/퍼블리싱 100% 참여 (약 한달)</li>
                     <li>- html, css, javascript, jQuery</li>
                   </ul>
                   <a
@@ -320,16 +328,11 @@
                 <div class="prj-desc">
                   <h3>JOHNNIE WALKER</h3>
                   <p>
-                    기존 조니워커 사이트는 깔끔한 디자인이지만 좁은 그리드와
-                    정적인 구성이 단조롭게 느껴졌습니다.
-                    <span class="txt-br"></span> 그래서 장점은 유지하면서
-                    다양하고 동적인 요소들을 추가 하여 저의 스타일로 리뉴얼
-                    해보았습니다.<span class="txt-br"></span>
-                    처음 리액트로 작업해본 프로젝트로 기본적인 기능들과 다양한
-                    Hook들을 경험할 수 있었습니다.
+                    조니워커 웹 리뉴얼 제작 (개인 작품) <br/>
+                    처음 리액트로 진행한 프로젝트로 심플하고 직관적으로 UI를 설계하여 누구나 쉽게 이용이 가능하도록 제작하였습니다.
                   </p>
                   <ul>
-                    <li>- 반응형 웹사이트/퍼블리싱 100% 참여 (약 14일)</li>
+                    <li>- 반응형/퍼블리싱 100% 참여 (약 14일)</li>
                     <li>- html, css, javascript, react</li>
                   </ul>
                   <a
@@ -347,7 +350,7 @@
                 </div>
                 <div class="prj-img">
                   <img
-                    src="./assets/imgs/project2.PNG"
+                    src="./assets/imgs/prj-img3.jpg"
                     alt="조니워커 프로젝트"
                   />
                 </div>
@@ -355,21 +358,15 @@
               <div class="prj-list prj-left">
                 <div class="prj-img">
                   <img
-                    src="./assets/imgs/project3.PNG"
+                    src="./assets/imgs/prj-img4.jpg"
                     alt="보나그릴 프로젝트"
                   />
                 </div>
                 <div class="prj-desc">
                   <h3>VONA GRILL</h3>
                   <p>
-                    외국 레스토랑 웹을 다양한 동적 효과들로 개성있게 표현 한
-                    원페이지 사이트 입니다.<span class="txt-br"></span> 사이트를
-                    방문한 사용자들이 메뉴를 보거나 예약을 할때 보다 즐거운
-                    경험을 할 수 있도록 많은 애니메이션 효과들을 사용하였습
-                    니다. <span class="txt-br"></span>
-                    마우스 위치에 따라 사물이 움직이도록 원근감 있게 구성하였고
-                    다양한 스크롤 이벤트와 패럴랙스 스크롤 이벤트를 활용해서
-                    생동감을 주었습니다.
+                    보나그릴 레스토랑 웹 제작 (개인 작품) <br />
+                    외국에 한 레스토랑의 웹사이트를 패럴랙스와 마우스 이벤트를 사용하여 다양한 시각적 요소들을 담아 제작하였습니다.
                   </p>
                   <ul>
                     <li>- 퍼블리싱 100% 참여 (약 5일)</li>
@@ -393,13 +390,11 @@
                 <div class="prj-desc">
                   <h3>ECTACO</h3>
                   <p>
-                    기존 오래된 사이트를 아임웹 기반의 템플릿을 활용하여 기업
-                    홈페이지 및 판매 스토어로 겸용할 수 있도록 리뉴얼
-                    하였습니다.<span class="txt-br"></span>
-                    클라이언트의 요청대로 유저들의 접근성과 사용성을 고려하여 쉽고 간편한 기능들로 구현 하였습니다.
+                    자사 온라인 쇼핑몰 리뉴얼 제작
+                    기존 플래쉬로 만들어진 오래된 기업 홈페이지를 아임웹 기반 온라인 쇼핑몰로 리뉴얼 하였습니다.
                   </p>
                   <ul>
-                    <li>- 반응형 웹사이트/퍼블리싱 100% 참여 (약 14일)</li>
+                    <li>- 반응형/퍼블리싱 100% 참여 (약 14일)</li>
                     <li>- html, css, javascript, jQuery</li>
                   </ul>
                   <a
@@ -416,7 +411,7 @@
                   </a>
                 </div>
                 <div class="prj-img">
-                  <img src="./assets/imgs/project4.PNG" alt="엑타코 프로젝트" />
+                  <img src="./assets/imgs/prj-img5.jpg" alt="엑타코 프로젝트" />
                 </div>
               </div>
             </div>

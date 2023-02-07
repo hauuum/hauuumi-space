@@ -9,9 +9,11 @@ window.addEventListener('DOMContentLoaded', function () {
   const eleNav = document.querySelector('nav');
   const navMemu = document.querySelectorAll('nav > a');
   const eleH1 = document.querySelector('h1');
+  const circle = document.querySelector('.circle');
 
   setTimeout(() => counter(), 1000);
-  
+
+
   // loading animation
   const counter = () => {
     const progressNum = document.querySelector(".progress-num");
@@ -37,7 +39,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   //Nav dark color
   const changeBlackNav = () => {
-    eleHeader.style.backgroundColor = '#222e3c';
+    eleHeader.style.backgroundColor = '#171d2c';
     eleHeader.style.borderBottom = '#000000';
     eleNav.style.color = '#fff';
     eleH1.style.color = '#fff';
@@ -144,20 +146,25 @@ window.addEventListener('DOMContentLoaded', function () {
   }
 
   //Project List shows by scroll
-  const parallaxPrjList = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("view");
+  let prjListOption = {
+    threshold: 0.5
+  }
+  const parallaxPrjList = (entries) => {
+    entries.forEach(entry => {
+      if(entry.intersectionRatio >= 0.5) {
+        entry.target.classList.add('view')
       }
       else {
-        entry.target.classList.remove("view");
+        entry.target.classList.remove('view')
       }
-    });
+    })
+  }
+  const lineBannerObserver = new IntersectionObserver(parallaxPrjList, prjListOption);
+  const lineBanner = document.querySelectorAll(".prj-list");
+  lineBanner.forEach((ele, inx) => {
+    lineBannerObserver.observe(ele, inx);
   });
-  const prjList = document.querySelectorAll(".prj-list");
-  prjList.forEach((ele, inx) => {
-    parallaxPrjList.observe(ele, inx);
-  });
+
 
   //Work video moves by scroll
   const scrollVideo = () => {
@@ -238,7 +245,7 @@ window.addEventListener('DOMContentLoaded', function () {
   //Shooting star Animation 
   const shootingStarWrap = s1.querySelector('#shootingStar-wrap');
   const shootingStar = () => {
-    let num = document.documentElement.clientWidth / 80;
+    let num = document.documentElement.clientWidth/80;
     shootingStarWrap.innerHTML = "";
 
     for (let i = 0; i < num; i++) {

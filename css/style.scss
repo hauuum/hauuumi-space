@@ -32,7 +32,7 @@
     }
   }
   .progress-bar {
-    width: 20%;
+    width: 40%;
     height: 6px;
     background: #e1e4e8;
     border-radius: 3px;
@@ -41,7 +41,7 @@
       width: 40%;
     } 
     @include mobile{
-      width: 60%;
+      width: 70%;
     } 
     .bar {
       display: block;
@@ -69,8 +69,8 @@
 header {
   position: fixed;
   width: 100%;
-  padding: .5rem 0;
-  background: #222e3c;
+  padding: .75rem 0;
+  background: #171d2c;
   box-sizing: border-box;
   z-index: 100;
   transition: .2s;
@@ -126,7 +126,7 @@ main {
     position: relative;
     background: url(../assets/imgs/bg2.png) center center repeat;
     background-attachment: fixed;
-    background-size: cover;
+    background-size: contain;
     &::before {
       content: '';
       display: block;
@@ -144,6 +144,11 @@ main {
       position: relative;
       &:not(.home-introduce, .home-strength){
         height: 100vh;
+      }
+      &.home-intro {
+        @include mobile{
+          height: 60vh;
+        }
       }
     }
     &-main {
@@ -219,6 +224,9 @@ main {
       }
     }
     &-intro {
+      @include mobile{
+        height: 60vh;
+      }
       .row {
         flex-direction: column;
       }
@@ -277,19 +285,20 @@ main {
     }
     &-introduce {
       padding: 10rem 0;
-      overflow: hidden;
+      overflow-x: hidden;
       @include tablet{
         padding: 7.5rem 0;
       }
       @include mobile{
         padding: 5rem 0;
+        overflow-x: hidden;
       }
       .container {
         will-change: transform;
         .scroll-txt {
           position: relative;
           font-family: "TmonMonsori";
-          font-size: 5rem;
+          font-size: 4.2rem;
           font-weight: 900;
           line-height: 1;
           color: $pink;
@@ -305,11 +314,14 @@ main {
           &::after{
             display: block;
             position: absolute;
+            top: .25rem;
+            left: -.25rem;
             color: transparent;
             -webkit-text-stroke: 1px #e92e69;
             z-index: 3;
             @include mobile{
-              -webkit-text-stroke: 0.6px #e92e69;
+              top: .125rem;
+              left: -.125rem;
             }
           }
         }
@@ -318,7 +330,7 @@ main {
           left: -60%;
           margin-bottom: -.5em; 
           &::before {
-            content: '"디자인을 이해하고 센스 넘치는 퍼블리셔"';
+            content: '"디자인을 이해하고 센스있는 퍼블리셔"';
           }
         }
         .__right{
@@ -329,7 +341,6 @@ main {
             content: '"개발에 관심이 많아 잘 통하는 퍼블리셔"';
           }
         }
-      
         .row {
           position: relative;
           &::before {
@@ -343,6 +354,9 @@ main {
             background: rgba(243, 238, 238, 0.5);
             transform: skew(-12deg);
             z-index: 2; 
+            @include mobile{
+              display: none;
+            }
           }
           &::after {
             content: '';
@@ -355,6 +369,9 @@ main {
             background: rgba(243, 238, 238, 0.5);
             transform: skew(-12deg);
             z-index: 2;
+            @include mobile{
+              display: none;
+            }
           }
           .home-introduce-box {
             position: relative;
@@ -369,7 +386,7 @@ main {
               display: flex;
               justify-content: center;
               flex-wrap: wrap;
-              padding: 1.25rem 0;
+              padding: 1.5rem 0;
               box-sizing: border-box;
               width: 100%;
             }  
@@ -380,7 +397,7 @@ main {
               top: 0;
               left: 50%;
               transform: translateX(-50%);
-              width: 100vw;
+              width: 200vw;
               height: 100%;
               z-index: 1;
               box-shadow: 0 0 5px rgba(0,0,0,0.6);
@@ -400,6 +417,9 @@ main {
               @include tablet{
                 left: -6%;
               } 
+              @include mobile{
+                display: none;
+              }
             }
             img {
               width: 28%;
@@ -415,7 +435,7 @@ main {
             .home-desc {
               position: relative;
               width: 100%;
-              padding: 7% 0;
+              padding: 8.5% 0;
               box-sizing: border-box;
               margin-left: 2.5rem;          
               z-index: 5;
@@ -722,63 +742,24 @@ main {
       @include mobile{
         width: 100%;
         flex-direction: column;
-      }
-      &.prj-left {
-        .prj-desc {
-          margin-right: -1.875rem;
-        }
-        &.view {
-          opacity: 1;
-          .prj-desc {
-            margin-right: 0;
-            @include mobile{
-              margin-left: 0;
-            }
-          }
-        }
-      }
-      &.prj-right {
-        .prj-desc {
-          margin-left: -1.875rem;
-        }
-        &.view {
-          opacity: 1;
-          .prj-desc {
-            margin-left: 0;
-            @include mobile{
-              margin-left: 0;
-            }
-          }
-        }
+        transition: opacity .4s;
       }
       .prj-img {
         position: relative;
         width: 58%;
-        border: 1px solid #e0e0e0;
-        box-sizing: border-box;
-        transition: .4s;
-        overflow: hidden;
+        aspect-ratio: 1/.6;
+        @include tablet{
+          width: 52%;
+        }
         @include mobile{
-          flex-direction: column;
           width: 100%;
           order: 1;
         }
         img {
           position: relative;
+          object-fit: cover;
           width: 100%;
-          filter: blur(1.5px) brightness(.67);
-          transform: scale(1.6);
-          transition: transform .6s;
-          z-index: 1;
-          @include mobile{
-            filter: blur(0) brightness(1);
-            transform: scale(1.2);
-          }
-          &:hover,
-          &:focus{
-            filter: blur(0) brightness(1);
-            transform: scale(1.2);
-          }
+          aspect-ratio: 1/0.6;
         }
         &::before {
           content: '';
@@ -788,16 +769,30 @@ main {
           top: 0;
           width: 100%;
           height: 100%;
-          border: 2px solid #f0f0f0;
+          background: #fff;
           box-sizing: border-box;
-          transform: rotate(6deg);
-          transition: .6s;
-          z-index: 0;
+          transform: scale(0%, 0%);
+          animation-iteration-count: 1;
+          z-index: 2;
+        }
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: #e9e9e9;
+          box-sizing: border-box;
+          transform: scale(0%, 0%);
+          animation-iteration-count: 1;
+          z-index: 2;
         }
       }
       .prj-desc {
         width: calc(42% - 2.5rem);
-        transition: 1s;
+        transition: .6s;
         @include tablet{
           width: calc(42% - 1.25rem);
         }
@@ -894,7 +889,7 @@ main {
             height: 2.142857em;
             border-radius: 50%;
             background: #d04963;
-            opacity: .3;
+            opacity: .6;
             transition: .2s;
             @include tablet{
               display: inline-block;
@@ -918,6 +913,137 @@ main {
             }
             i {
               opacity: 1;
+            }
+          }
+        }
+      }
+      &.prj-left {
+        .prj-desc {
+          margin-right: -1.875rem;
+          @include mobile{
+            margin-right: 0;
+          }
+        }
+        &.view {
+          opacity: 1;
+          .prj-img{
+            &::before {
+              @include animation(.4s, whiteBg, ease-in-out);
+              @include keyframe(whiteBg) {
+                0% {
+                  transform: scale(1, 1);
+                  transform-origin: 100% 100%;
+                }
+                30% {
+                  transform: scale(1, 1);
+                  transform-origin: 100% 100%;
+                }
+                60% {
+                  transform: scale(1, 1);
+                  transform-origin: 0% 100%;
+                }
+                100% {
+                  transform: scale(0, 1);
+                  transform-origin: 0% 100%;
+                }
+              }
+            }
+            &::after  {
+              @include animation(.8s, darkBg, ease-in-out);
+              @include keyframe(darkBg) {
+                0% {
+                  transform: scale(0, 1);
+                  transform-origin: 0% 100%;
+                }
+                30% {
+                  transform: scale(1, 1);
+                  transform-origin: 0% 100%;
+                }
+                60% {
+                  transform: scale(1, 1);
+                  transform-origin: 100% 100%;
+                }
+                100% {
+                  transform: scale(0, 1);
+                  transform-origin: 100% 100%;
+                }
+              }
+            }
+          }
+          .prj-desc {
+            margin-right: 0;
+            @include mobile{
+              margin-right: 0;
+            }
+          }
+        }
+      }
+      &.prj-right {
+        .prj-img{
+          width: 50%;
+          @include tablet{
+            width: 52%;
+          }
+          @include mobile{
+            width: 100%;
+          }
+        }
+        .prj-desc {
+          margin-left: -1.875rem;
+          @include mobile{
+            margin-left: 0;
+          }
+        }
+        &.view {
+          opacity: 1;
+          .prj-img{
+            &::before {
+              @include animation(.4s, whiteBg, ease-in-out);
+              @include keyframe(whiteBg) {
+                0% {
+                  transform: scale(1, 1);
+                  transform-origin: 100% 100%;
+                }
+                30% {
+                  transform: scale(1, 1);
+                  transform-origin: 100% 100%;
+                }
+                60% {
+                  transform: scale(1, 1);
+                  transform-origin: 0% 100%;
+                }
+                100% {
+                  transform: scale(0, 1);
+                  transform-origin: 0% 100%;
+                }
+              }
+            }
+            &::after  {
+              @include animation(.8s, darkBg, ease-in-out);
+              @include keyframe(darkBg) {
+                0% {
+                  transform: scale(0, 1);
+                  transform-origin: 0% 100%;
+                }
+                30% {
+                  transform: scale(1, 1);
+                  transform-origin: 0% 100%;
+                }
+                60% {
+                  transform: scale(1, 1);
+                  transform-origin: 100% 100%;
+                }
+                100% {
+                  transform: scale(0, 1);
+                  transform-origin: 100% 100%;
+                }
+              }
+            }
+          }          
+          .prj-desc {
+            margin-left: 0;
+            @include mobile{
+              margin-left: 0;
             }
           }
         }
@@ -1085,6 +1211,7 @@ main {
           width: 100%;
           height: 2px;
           background: $pink;
+          animation-iteration-count: infinite;
           @include animation(1.4s, textdecoration, ease-in-out);
           @include keyframe(textdecoration) {
             0% {
@@ -1121,7 +1248,7 @@ main {
         column-width: 34vw;
       }
       .space-img {
-        perspective: 600px;
+        perspective: 10000px;
         cursor: pointer;
         @include mobile{
           border-radius: 6px;
@@ -1226,6 +1353,7 @@ footer{
     background-color: #fff;
     border-radius: 50%;
     box-shadow: 0 0 6px 3px rgba(43,29,214,.6), 0 0 1px 6px rgba(43,29,214,.1);
+    animation-iteration-count: infinite;
     @include animation(1s,twinkle,ease-in-out);
   }
 }
@@ -1245,6 +1373,7 @@ footer{
     background: #fff;
     border-radius: 50%;
     box-shadow: 0 0 0 4px rgba(255, 255, 255, .1), 0 0 0 8px rgba(255, 255, 255, .1), 0 0 20px rgba(255, 255, 255, 1);
+    animation-iteration-count: infinite;
     transition: 0.4s;
     &::before {
       content: '';
@@ -1288,6 +1417,7 @@ footer{
   width: 3.2vw;
   transform: rotate(0deg);
   filter: brightness(2) hue-rotate(30deg);
+  animation-iteration-count: infinite;
   @include animation(48s, meteor1, linear);
   @include keyframe(meteor1) {
     100% {
@@ -1309,6 +1439,7 @@ footer{
   width: 3.8vw;
   transform: rotate(92deg);
   filter: blur(0) brightness(2) hue-rotate(30deg);
+  animation-iteration-count: infinite;
   @include animation(18s, meteor2, linear);
   @include keyframe(meteor2) {
     100% {
@@ -1330,6 +1461,7 @@ footer{
   width: 2.8vw;
   transform: rotate(22deg);
   filter: blur(0) brightness(2) hue-rotate(30deg);
+  animation-iteration-count: infinite;
   @include animation(78s, meteor3, linear);
   @include keyframe(meteor3) {
     100% {
@@ -1350,6 +1482,7 @@ footer{
   right: 4%;
   width: 18vw;
   filter: blur(4px);
+  animation-iteration-count: infinite;
   @include animation(2s, planet2, linear);
   @include keyframe(planet2) {
     0% {
@@ -1391,6 +1524,7 @@ footer{
     bottom: 0;
     right: 0;
     width: 10vw;
+    animation-iteration-count: infinite;
     @include animation(30s, planet3, linear);
     @include keyframe(planet3) {
       0% {
@@ -1408,6 +1542,7 @@ footer{
     top: calc(50% - 1.6vw);
     left: calc(50% - 1.6vw);
     width: 3.2vw;
+    animation-iteration-count: infinite;
     @include animation(3s, planet4, linear);
     @include keyframe(planet4) {
       0% {
@@ -1452,6 +1587,7 @@ footer{
   top: 92%;
   width: 18vw;
   filter: blur(3px);
+  animation-iteration-count: infinite;
   @include tablet{
     top: 94%;
     width: 25vw;
@@ -1475,6 +1611,7 @@ footer{
   left: 6%;
   width: 13vw;
   filter: blur(2px);
+  animation-iteration-count: infinite;
   @include animation(2.1s, spaceStation1, linear);
   @include keyframe(spaceStation1) {
     0% {
@@ -1496,7 +1633,8 @@ footer{
   top: 14%;
   right: 8%;
   width: 9vw;
-  @include animation(1s, spaceStation1, linear);
+  animation-iteration-count: infinite;
+  @include animation(4s, spaceStation1, linear);
   @include keyframe(spaceStation1) {
     0% {
       transform: rotate(0deg) translateX(3px) rotate(0deg);

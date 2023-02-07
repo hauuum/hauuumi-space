@@ -47,7 +47,7 @@
   color: #424242;
 }
 #progress .progress-bar {
-  width: 20%;
+  width: 40%;
   height: 6px;
   background: #e1e4e8;
   border-radius: 3px;
@@ -60,7 +60,7 @@
 }
 @media (max-width: 767px) {
   #progress .progress-bar {
-    width: 60%;
+    width: 70%;
   }
 }
 #progress .progress-bar .bar {
@@ -71,7 +71,6 @@
   background-size: 300% 100%;
   animation-name: progress;
   animation-duration: 2s;
-  animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 @keyframes progress {
@@ -90,8 +89,8 @@
 header {
   position: fixed;
   width: 100%;
-  padding: 0.5rem 0;
-  background: #222e3c;
+  padding: 0.75rem 0;
+  background: #171d2c;
   box-sizing: border-box;
   z-index: 100;
   transition: 0.2s;
@@ -157,7 +156,7 @@ main .home {
   position: relative;
   background: url(../assets/imgs/bg2.png) center center repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: contain;
 }
 main .home::before {
   content: "";
@@ -177,6 +176,11 @@ main .home > div {
 }
 main .home > div:not(.home-introduce, .home-strength) {
   height: 100vh;
+}
+@media (max-width: 767px) {
+  main .home > div.home-intro {
+    height: 60vh;
+  }
 }
 main .home-main {
   z-index: 3;
@@ -268,6 +272,11 @@ main .home-main .home-txt .home-next-btn a i {
     font-size: 0.75rem;
   }
 }
+@media (max-width: 767px) {
+  main .home-intro {
+    height: 60vh;
+  }
+}
 main .home-intro .row {
   flex-direction: column;
 }
@@ -333,7 +342,7 @@ main .home-intro .home-desc #typing-txt::before {
 }
 main .home-introduce {
   padding: 10rem 0;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 @media (max-width: 1023px) {
   main .home-introduce {
@@ -343,6 +352,7 @@ main .home-introduce {
 @media (max-width: 767px) {
   main .home-introduce {
     padding: 5rem 0;
+    overflow-x: hidden;
   }
 }
 main .home-introduce .container {
@@ -351,7 +361,7 @@ main .home-introduce .container {
 main .home-introduce .container .scroll-txt {
   position: relative;
   font-family: "TmonMonsori";
-  font-size: 5rem;
+  font-size: 4.2rem;
   font-weight: 900;
   line-height: 1;
   color: #D04963;
@@ -371,13 +381,16 @@ main .home-introduce .container .scroll-txt {
 main .home-introduce .container .scroll-txt::before, main .home-introduce .container .scroll-txt::after {
   display: block;
   position: absolute;
+  top: 0.25rem;
+  left: -0.25rem;
   color: transparent;
   -webkit-text-stroke: 1px #e92e69;
   z-index: 3;
 }
 @media (max-width: 767px) {
   main .home-introduce .container .scroll-txt::before, main .home-introduce .container .scroll-txt::after {
-    -webkit-text-stroke: 0.6px #e92e69;
+    top: 0.125rem;
+    left: -0.125rem;
   }
 }
 main .home-introduce .container .__left {
@@ -386,7 +399,7 @@ main .home-introduce .container .__left {
   margin-bottom: -0.5em;
 }
 main .home-introduce .container .__left::before {
-  content: '"디자인을 이해하고 센스 넘치는 퍼블리셔"';
+  content: '"디자인을 이해하고 센스있는 퍼블리셔"';
 }
 main .home-introduce .container .__right {
   bottom: -0.75rem;
@@ -411,6 +424,11 @@ main .home-introduce .container .row::before {
   transform: skew(-12deg);
   z-index: 2;
 }
+@media (max-width: 767px) {
+  main .home-introduce .container .row::before {
+    display: none;
+  }
+}
 main .home-introduce .container .row::after {
   content: "";
   display: block;
@@ -422,6 +440,11 @@ main .home-introduce .container .row::after {
   background: rgba(243, 238, 238, 0.5);
   transform: skew(-12deg);
   z-index: 2;
+}
+@media (max-width: 767px) {
+  main .home-introduce .container .row::after {
+    display: none;
+  }
 }
 main .home-introduce .container .row .home-introduce-box {
   position: relative;
@@ -440,7 +463,7 @@ main .home-introduce .container .row .home-introduce-box {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 1.25rem 0;
+    padding: 1.5rem 0;
     box-sizing: border-box;
     width: 100%;
   }
@@ -452,7 +475,7 @@ main .home-introduce .container .row .home-introduce-box::before {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100vw;
+  width: 200vw;
   height: 100%;
   z-index: 1;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
@@ -475,6 +498,11 @@ main .home-introduce .container .row .home-introduce-box::after {
     left: -6%;
   }
 }
+@media (max-width: 767px) {
+  main .home-introduce .container .row .home-introduce-box::after {
+    display: none;
+  }
+}
 main .home-introduce .container .row .home-introduce-box img {
   width: 28%;
   z-index: 5;
@@ -493,7 +521,7 @@ main .home-introduce .container .row .home-introduce-box img {
 main .home-introduce .container .row .home-introduce-box .home-desc {
   position: relative;
   width: 100%;
-  padding: 7% 0;
+  padding: 8.5% 0;
   box-sizing: border-box;
   margin-left: 2.5rem;
   z-index: 5;
@@ -864,68 +892,30 @@ main .project .prj-list {
   main .project .prj-list {
     width: 100%;
     flex-direction: column;
-  }
-}
-main .project .prj-list.prj-left .prj-desc {
-  margin-right: -1.875rem;
-}
-main .project .prj-list.prj-left.view {
-  opacity: 1;
-}
-main .project .prj-list.prj-left.view .prj-desc {
-  margin-right: 0;
-}
-@media (max-width: 767px) {
-  main .project .prj-list.prj-left.view .prj-desc {
-    margin-left: 0;
-  }
-}
-main .project .prj-list.prj-right .prj-desc {
-  margin-left: -1.875rem;
-}
-main .project .prj-list.prj-right.view {
-  opacity: 1;
-}
-main .project .prj-list.prj-right.view .prj-desc {
-  margin-left: 0;
-}
-@media (max-width: 767px) {
-  main .project .prj-list.prj-right.view .prj-desc {
-    margin-left: 0;
+    transition: opacity 0.4s;
   }
 }
 main .project .prj-list .prj-img {
   position: relative;
   width: 58%;
-  border: 1px solid #e0e0e0;
-  box-sizing: border-box;
-  transition: 0.4s;
-  overflow: hidden;
+  aspect-ratio: 1/0.6;
+}
+@media (max-width: 1023px) {
+  main .project .prj-list .prj-img {
+    width: 52%;
+  }
 }
 @media (max-width: 767px) {
   main .project .prj-list .prj-img {
-    flex-direction: column;
     width: 100%;
     order: 1;
   }
 }
 main .project .prj-list .prj-img img {
   position: relative;
+  object-fit: cover;
   width: 100%;
-  filter: blur(1.5px) brightness(0.67);
-  transform: scale(1.6);
-  transition: transform 0.6s;
-  z-index: 1;
-}
-@media (max-width: 767px) {
-  main .project .prj-list .prj-img img {
-    filter: blur(0) brightness(1);
-    transform: scale(1.2);
-  }
-}
-main .project .prj-list .prj-img img:hover, main .project .prj-list .prj-img img:focus {
-  filter: blur(0) brightness(1);
-  transform: scale(1.2);
+  aspect-ratio: 1/0.6;
 }
 main .project .prj-list .prj-img::before {
   content: "";
@@ -935,15 +925,29 @@ main .project .prj-list .prj-img::before {
   top: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid #f0f0f0;
+  background: #fff;
   box-sizing: border-box;
-  transform: rotate(6deg);
-  transition: 0.6s;
-  z-index: 0;
+  transform: scale(0%, 0%);
+  animation-iteration-count: 1;
+  z-index: 2;
+}
+main .project .prj-list .prj-img::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #e9e9e9;
+  box-sizing: border-box;
+  transform: scale(0%, 0%);
+  animation-iteration-count: 1;
+  z-index: 2;
 }
 main .project .prj-list .prj-desc {
   width: calc(42% - 2.5rem);
-  transition: 1s;
+  transition: 0.6s;
 }
 @media (max-width: 1023px) {
   main .project .prj-list .prj-desc {
@@ -1066,7 +1070,7 @@ main .project .prj-list .prj-desc .go-to-btn::before {
   height: 2.142857em;
   border-radius: 50%;
   background: #d04963;
-  opacity: 0.3;
+  opacity: 0.6;
   transition: 0.2s;
 }
 @media (max-width: 1023px) {
@@ -1092,6 +1096,149 @@ main .project .prj-list .prj-desc .go-to-btn:hover::before, main .project .prj-l
 }
 main .project .prj-list .prj-desc .go-to-btn:hover i, main .project .prj-list .prj-desc .go-to-btn:focus i {
   opacity: 1;
+}
+main .project .prj-list.prj-left .prj-desc {
+  margin-right: -1.875rem;
+}
+@media (max-width: 767px) {
+  main .project .prj-list.prj-left .prj-desc {
+    margin-right: 0;
+  }
+}
+main .project .prj-list.prj-left.view {
+  opacity: 1;
+}
+main .project .prj-list.prj-left.view .prj-img::before {
+  animation-name: whiteBg;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes whiteBg {
+  0% {
+    transform: scale(1, 1);
+    transform-origin: 100% 100%;
+  }
+  30% {
+    transform: scale(1, 1);
+    transform-origin: 100% 100%;
+  }
+  60% {
+    transform: scale(1, 1);
+    transform-origin: 0% 100%;
+  }
+  100% {
+    transform: scale(0, 1);
+    transform-origin: 0% 100%;
+  }
+}
+main .project .prj-list.prj-left.view .prj-img::after {
+  animation-name: darkBg;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes darkBg {
+  0% {
+    transform: scale(0, 1);
+    transform-origin: 0% 100%;
+  }
+  30% {
+    transform: scale(1, 1);
+    transform-origin: 0% 100%;
+  }
+  60% {
+    transform: scale(1, 1);
+    transform-origin: 100% 100%;
+  }
+  100% {
+    transform: scale(0, 1);
+    transform-origin: 100% 100%;
+  }
+}
+main .project .prj-list.prj-left.view .prj-desc {
+  margin-right: 0;
+}
+@media (max-width: 767px) {
+  main .project .prj-list.prj-left.view .prj-desc {
+    margin-right: 0;
+  }
+}
+main .project .prj-list.prj-right .prj-img {
+  width: 50%;
+}
+@media (max-width: 1023px) {
+  main .project .prj-list.prj-right .prj-img {
+    width: 52%;
+  }
+}
+@media (max-width: 767px) {
+  main .project .prj-list.prj-right .prj-img {
+    width: 100%;
+  }
+}
+main .project .prj-list.prj-right .prj-desc {
+  margin-left: -1.875rem;
+}
+@media (max-width: 767px) {
+  main .project .prj-list.prj-right .prj-desc {
+    margin-left: 0;
+  }
+}
+main .project .prj-list.prj-right.view {
+  opacity: 1;
+}
+main .project .prj-list.prj-right.view .prj-img::before {
+  animation-name: whiteBg;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes whiteBg {
+  0% {
+    transform: scale(1, 1);
+    transform-origin: 100% 100%;
+  }
+  30% {
+    transform: scale(1, 1);
+    transform-origin: 100% 100%;
+  }
+  60% {
+    transform: scale(1, 1);
+    transform-origin: 0% 100%;
+  }
+  100% {
+    transform: scale(0, 1);
+    transform-origin: 0% 100%;
+  }
+}
+main .project .prj-list.prj-right.view .prj-img::after {
+  animation-name: darkBg;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-in-out;
+}
+@keyframes darkBg {
+  0% {
+    transform: scale(0, 1);
+    transform-origin: 0% 100%;
+  }
+  30% {
+    transform: scale(1, 1);
+    transform-origin: 0% 100%;
+  }
+  60% {
+    transform: scale(1, 1);
+    transform-origin: 100% 100%;
+  }
+  100% {
+    transform: scale(0, 1);
+    transform-origin: 100% 100%;
+  }
+}
+main .project .prj-list.prj-right.view .prj-desc {
+  margin-left: 0;
+}
+@media (max-width: 767px) {
+  main .project .prj-list.prj-right.view .prj-desc {
+    margin-left: 0;
+  }
 }
 main .work {
   position: sticky;
@@ -1285,9 +1432,9 @@ main .contact .contact-txt a::before {
   width: 100%;
   height: 2px;
   background: #D04963;
+  animation-iteration-count: infinite;
   animation-name: textdecoration;
   animation-duration: 1.4s;
-  animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
 @keyframes textdecoration {
@@ -1327,7 +1474,7 @@ main .contact .imgs-box {
   }
 }
 main .contact .imgs-box .space-img {
-  perspective: 600px;
+  perspective: 10000px;
   cursor: pointer;
 }
 @media (max-width: 767px) {
@@ -1433,9 +1580,9 @@ footer p {
   background-color: #fff;
   border-radius: 50%;
   box-shadow: 0 0 6px 3px rgba(43, 29, 214, 0.6), 0 0 1px 6px rgba(43, 29, 214, 0.1);
+  animation-iteration-count: infinite;
   animation-name: twinkle;
   animation-duration: 1s;
-  animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
 
@@ -1456,10 +1603,10 @@ footer p {
   background: #fff;
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgb(255, 255, 255);
+  animation-iteration-count: infinite;
   transition: 0.4s;
   animation-name: shootingStar;
   animation-duration: 3s;
-  animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 #shootingStar-wrap span::before {
@@ -1500,9 +1647,9 @@ footer p {
   width: 3.2vw;
   transform: rotate(0deg);
   filter: brightness(2) hue-rotate(30deg);
+  animation-iteration-count: infinite;
   animation-name: meteor1;
   animation-duration: 48s;
-  animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 @keyframes meteor1 {
@@ -1529,9 +1676,9 @@ footer p {
   width: 3.8vw;
   transform: rotate(92deg);
   filter: blur(0) brightness(2) hue-rotate(30deg);
+  animation-iteration-count: infinite;
   animation-name: meteor2;
   animation-duration: 18s;
-  animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 @keyframes meteor2 {
@@ -1558,9 +1705,9 @@ footer p {
   width: 2.8vw;
   transform: rotate(22deg);
   filter: blur(0) brightness(2) hue-rotate(30deg);
+  animation-iteration-count: infinite;
   animation-name: meteor3;
   animation-duration: 78s;
-  animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 @keyframes meteor3 {
@@ -1586,9 +1733,9 @@ footer p {
   right: 4%;
   width: 18vw;
   filter: blur(4px);
+  animation-iteration-count: infinite;
   animation-name: planet2;
   animation-duration: 2s;
-  animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 @keyframes planet2 {
@@ -1610,7 +1757,6 @@ footer p {
     width: 38vw;
     animation-name: planet2;
     animation-duration: 2s;
-    animation-iteration-count: infinite;
     animation-timing-function: linear;
   }
   @keyframes planet2 {
@@ -1641,9 +1787,9 @@ footer p {
   bottom: 0;
   right: 0;
   width: 10vw;
+  animation-iteration-count: infinite;
   animation-name: planet3;
   animation-duration: 30s;
-  animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 @keyframes planet3 {
@@ -1663,9 +1809,9 @@ footer p {
   top: calc(50% - 1.6vw);
   left: calc(50% - 1.6vw);
   width: 3.2vw;
+  animation-iteration-count: infinite;
   animation-name: planet4;
   animation-duration: 3s;
-  animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 @keyframes planet4 {
@@ -1714,9 +1860,9 @@ footer p {
   top: 92%;
   width: 18vw;
   filter: blur(3px);
+  animation-iteration-count: infinite;
   animation-name: planet5;
   animation-duration: 2s;
-  animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
 @media (max-width: 1023px) {
@@ -1745,9 +1891,9 @@ footer p {
   left: 6%;
   width: 13vw;
   filter: blur(2px);
+  animation-iteration-count: infinite;
   animation-name: spaceStation1;
   animation-duration: 2.1s;
-  animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 @keyframes spaceStation1 {
@@ -1774,9 +1920,9 @@ footer p {
   top: 14%;
   right: 8%;
   width: 9vw;
-  animation-name: spaceStation1;
-  animation-duration: 1s;
   animation-iteration-count: infinite;
+  animation-name: spaceStation1;
+  animation-duration: 4s;
   animation-timing-function: linear;
 }
 @keyframes spaceStation1 {
